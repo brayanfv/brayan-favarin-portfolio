@@ -1,0 +1,46 @@
+# dependencies
+/node_modules
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# local environment files
+.env*
+!.env.example
+
+# debug
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+.eslintcache
+
+# local certificates
+*.pem
+
+# test output
+/coverage/
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# operating systems and editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
