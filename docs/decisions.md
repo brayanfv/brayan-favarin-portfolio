@@ -36,6 +36,14 @@ O blueprint cita o slug `listasmart`, mas não fornece dados suficientes para um
 estudo de caso. A rota não será criada com informações inventadas; o projeto
 será adicionado quando título, descrição, stack e conteúdo forem confirmados.
 
+## Contato por Resend sem persistência
+
+O formulário envia dados para uma Route Handler do Next.js e a chave da Resend
+permanece somente no servidor. Não há banco de dados nesta etapa. A validação
+é compartilhada com Zod, o endpoint limita o corpo da requisição e um honeypot
+silencioso reduz spam sem introduzir CAPTCHA. Os links de contato alternativos
+continuam visíveis caso o serviço esteja indisponível.
+
 ## JavaScript somente onde agrega valor
 
 Navbar e reveals continuam como Client Components. Links sociais e itens de

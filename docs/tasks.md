@@ -1,5 +1,10 @@
 # Estado do projeto
 
+## Atualização recente
+
+- [x] Formulário de contato com validação, Resend e canais alternativos.
+- [ ] Configurar Resend e remetente ou domínio verificado antes do envio real.
+
 ## Concluído
 
 - [x] Fundação com Next.js, TypeScript, Tailwind CSS e App Router.

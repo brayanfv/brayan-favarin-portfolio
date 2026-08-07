@@ -15,6 +15,8 @@ Server Components por padrão.
 - Lucide React para ícones;
 - Geist Sans e Geist Mono;
 - ESLint com Core Web Vitals.
+- Resend para o envio server-side do formulário de contato.
+- Zod para validação compartilhada do formulário.
 
 ## Requisitos
 
@@ -73,6 +75,47 @@ tipos e geração das rotas são validados pelo ESLint e pelo build do Next.js.
 - `/projetos/portfolio-pessoal`;
 - `/sitemap.xml`;
 - `/robots.txt`.
+
+## Formulário de contato com Resend
+
+O formulário da seção Contato envia os dados para `POST /api/contact`. Nome,
+e-mail e mensagem são validados no navegador e novamente no servidor. A chave
+da Resend nunca é enviada ao navegador; links de e-mail, GitHub e LinkedIn
+continuam disponíveis como canais alternativos.
+
+1. Crie uma API key em [Resend](https://resend.com/api-keys).
+2. Copie `.env.example` para `.env.local`.
+3. Preencha somente em `.env.local`:
+
+   ```env
+   RESEND_API_KEY=
+   CONTACT_TO_EMAIL=
+   CONTACT_FROM_EMAIL=
+   ```
+
+4. Use em `CONTACT_FROM_EMAIL` um remetente pertencente a um domínio verificado
+   na Resend. Não use o e-mail do visitante como remetente: ele é usado apenas
+   como `replyTo`.
+5. Reinicie `npm run dev` depois de alterar variáveis de ambiente.
+
+Sem essas três variáveis, o endpoint falha de forma controlada e o visitante
+recebe uma mensagem genérica, sem dados técnicos. O formulário possui um
+honeypot simples; não há banco de dados ou CAPTCHA nesta versão.
+
+### Teste local
+
+Com as variáveis configuradas, execute `npm run dev`, preencha os três campos
+e envie uma mensagem. Confirme o recebimento em `CONTACT_TO_EMAIL` e responda
+ao e-mail para validar o `replyTo`. Para testar falhas, remova temporariamente
+uma das variáveis de `.env.local` e reinicie o servidor.
+
+### Variáveis na Vercel
+
+No projeto da Vercel, abra **Settings → Environment Variables** e adicione
+`RESEND_API_KEY`, `CONTACT_TO_EMAIL` e `CONTACT_FROM_EMAIL` para os ambientes
+necessários. Use o mesmo remetente de domínio verificado na Resend e faça um
+novo deploy depois de salvar as variáveis. Não use o prefixo `NEXT_PUBLIC_` em
+nenhuma dessas chaves.
 
 O ListaSmart é citado no blueprint, mas seu estudo de caso ainda não foi criado
 porque não existem dados aprovados suficientes. Um slug desconhecido utiliza a

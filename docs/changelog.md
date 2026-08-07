@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-08-07 — formulário de contato
+
+- Formulário acessível integrado à seção Contato, com estados de envio,
+  sucesso e erro.
+- Rota server-side com validação Zod, limite de tamanho, honeypot e Resend.
+- Documentação de variáveis de ambiente e configuração de remetente verificado.
+
 ## 2026-08-07 — integração do currículo
 
 - Currículo validado e disponibilizado em

@@ -1,19 +1,20 @@
-import { Mail } from "lucide-react";
+import { BriefcaseBusiness, Clock3, Sparkles } from "lucide-react";
 
+import { ContactForm } from "@/components/contact/contact-form";
 import { Container } from "@/components/layout/container";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { SocialLinks } from "@/components/shared/social-links";
-import { PrimaryButton } from "@/components/ui/primary-button";
-import { contactSectionData } from "@/data/contact";
+import { contactHighlights, contactSectionData } from "@/data/contact";
 import { personalData } from "@/data/personal";
-import { socialLinks } from "@/data/social-links";
+
+const contactHighlightIcons = {
+  briefcase: BriefcaseBusiness,
+  clock: Clock3,
+  sparkles: Sparkles,
+} as const;
 
 export function ContactSection() {
-  const emailHref = socialLinks.find(
-    (link) => link.label === "E-mail" && link.href?.startsWith("mailto:"),
-  )?.href;
-
   return (
     <section
       aria-labelledby="contact-heading"
@@ -37,8 +38,8 @@ export function ContactSection() {
             {personalData.brand}
           </span>
 
-          <div className="relative grid min-w-0 gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(18rem,0.8fr)] lg:items-end lg:gap-16">
-            <AnimatedSection>
+          <div className="relative grid min-w-0 gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(25rem,0.92fr)] lg:items-start lg:gap-14 xl:gap-20">
+            <AnimatedSection className="min-w-0">
               <SectionHeading
                 eyebrow={contactSectionData.eyebrow}
                 title={contactSectionData.title}
@@ -55,10 +56,38 @@ export function ContactSection() {
                   </p>
                 ))}
               </div>
+
+              <ul className="mt-10 border-t border-border/90 sm:mt-12">
+                {contactHighlights.map((highlight) => {
+                  const Icon = contactHighlightIcons[highlight.icon];
+
+                  return (
+                    <li
+                      className="grid grid-cols-[2.25rem_minmax(0,1fr)] gap-4 border-b border-border/90 py-5 sm:grid-cols-[2.5rem_minmax(0,1fr)] sm:gap-5 sm:py-6"
+                      key={highlight.title}
+                    >
+                      <span
+                        aria-hidden="true"
+                        className="flex size-9 items-center justify-center rounded-md border border-border bg-background/55 text-primary-light"
+                      >
+                        <Icon size={17} strokeWidth={1.7} />
+                      </span>
+                      <div className="min-w-0 border-l border-primary/35 pl-4 sm:pl-5">
+                        <h3 className="text-sm font-medium text-foreground sm:text-base">
+                          {highlight.title}
+                        </h3>
+                        <p className="mt-1.5 max-w-lg text-sm leading-6 text-foreground-secondary">
+                          {highlight.description}
+                        </p>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
             </AnimatedSection>
 
             <AnimatedSection className="min-w-0" delay={0.12}>
-              <div className="border-t border-border pt-6 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-10">
+              <div className="rounded-xl border border-border bg-background/55 p-5 shadow-[0_20px_60px_rgb(0_0_0/0.2)] sm:p-7 lg:p-8">
                 <p className="inline-flex items-center gap-2 font-mono text-xs text-foreground-secondary">
                   <span
                     aria-hidden="true"
@@ -67,18 +96,9 @@ export function ContactSection() {
                   {personalData.availability}
                 </p>
 
-                {emailHref ? (
-                  <PrimaryButton
-                    aria-label={`Enviar e-mail para ${personalData.name}`}
-                    className="mt-6 w-full sm:w-auto"
-                    href={emailHref}
-                  >
-                    <Mail aria-hidden="true" size={17} strokeWidth={1.8} />
-                    {contactSectionData.primaryActionLabel}
-                  </PrimaryButton>
-                ) : null}
+                <ContactForm />
 
-                <address className="mt-7 not-italic">
+                <address className="mt-8 border-t border-border pt-6 not-italic">
                   <p className="mb-3 font-mono text-[0.6875rem] tracking-[0.14em] text-foreground-muted uppercase">
                     {contactSectionData.channelsLabel}
                   </p>
