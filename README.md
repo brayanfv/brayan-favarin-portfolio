@@ -161,15 +161,18 @@ derivam desse array. Não é necessário duplicar o slug em outro arquivo.
 O card e a galeria detectam `image` e passam a utilizar `next/image`
 automaticamente; nenhuma mudança de layout é necessária.
 
-## Adicionando o currículo
+## Atualizando o currículo
 
-1. Adicione o arquivo real em
-   `public/documents/curriculo-brayan-favarin.pdf`.
-2. Confirme o caminho em `siteConfig.resume.path`.
-3. Altere `siteConfig.resume.enabled` para `true`.
+1. Mantenha ou substitua o arquivo em
+   `public/documents/brayan-favarin-cv.pdf`.
+2. Confirme o caminho `/documents/brayan-favarin-cv.pdf` em
+   `siteConfig.resume.path`.
+3. Mantenha `siteConfig.resume.enabled` como `true` somente enquanto o PDF
+   existir.
 
-Enquanto a flag estiver desativada, o botão permanece oculto e nenhum link
-quebrado é gerado. Não adicione um PDF fictício.
+O botão "Baixar currículo" aparece no Hero somente quando a flag está
+ativada. Caso o arquivo seja removido, desative a flag para evitar links
+quebrados.
 
 ## Preparação para deploy na Vercel
 
@@ -189,7 +192,6 @@ instruções.
 ## Dados pendentes antes da publicação
 
 - URL HTTPS definitiva ou domínio;
-- arquivo real do currículo e ativação da flag;
 - conteúdo completo do ListaSmart;
 - imagens reais dos projetos, opcionais;
 - URLs ausentes de repositório ou demonstração, quando existirem.

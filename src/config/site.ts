@@ -83,7 +83,7 @@ export const siteConfig: SiteConfig = {
     email: "brayanmf1227@gmail.com",
   },
   resume: {
-    enabled: false,
-    path: "/documents/curriculo-brayan-favarin.pdf",
+    enabled: true,
+    path: "/documents/brayan-favarin-cv.pdf",
   },
 };

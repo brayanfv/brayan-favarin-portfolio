@@ -10,11 +10,11 @@
 - [x] Revisão de acessibilidade, responsividade, performance e qualidade.
 - [x] Placeholders locais mantidos como solução visual temporária.
 - [x] E-mail profissional configurado em `src/config/site.ts`.
+- [x] Currículo integrado pelo caminho `/documents/brayan-favarin-cv.pdf`.
 
 ## Próximos passos
 
 - [ ] Configurar a URL HTTPS definitiva em `NEXT_PUBLIC_SITE_URL`.
-- [ ] Adicionar o currículo e ativar `resume.enabled`.
 - [ ] Fornecer os dados completos do ListaSmart antes de criar seu estudo de caso.
 - [ ] Substituir os placeholders por imagens reais, quando disponíveis.
 - [ ] Revisar URLs de repositório e demonstração de cada projeto.

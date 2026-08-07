@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-08-07 — integração do currículo
+
+- Currículo validado e disponibilizado em
+  `/documents/brayan-favarin-cv.pdf`.
+- `siteConfig.resume.enabled` ativado, usando a ação existente no Hero.
+
 ## 2026-08-05 — revisão para publicação
 
 - Revisão geral da homepage, estudos de caso e página 404.
@@ -18,6 +24,6 @@
 ### Próximos passos
 
 - Preencher a URL de produção.
-- Adicionar currículo e imagens reais quando disponíveis.
+- Adicionar imagens reais quando disponíveis.
 - Fornecer o conteúdo do ListaSmart.
 - Realizar deploy, configurar domínio e avaliar analytics.
