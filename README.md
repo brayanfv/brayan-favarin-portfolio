@@ -235,7 +235,6 @@ instruções.
 ## Dados pendentes antes da publicação
 
 - URL HTTPS definitiva ou domínio;
-- conteúdo completo do ListaSmart;
 - imagens reais dos projetos, opcionais;
 - URLs ausentes de repositório ou demonstração, quando existirem.
 
