@@ -12,17 +12,11 @@ interface OverviewDetail {
 }
 
 export function ProjectOverview({ project }: ProjectOverviewProps) {
-  const details: OverviewDetail[] = [
-    ...(project.category
-      ? [{ label: "Tipo de projeto", value: project.category }]
-      : []),
-    ...(project.role ? [{ label: "Papel", value: project.role }] : []),
+  const details: readonly OverviewDetail[] = [
+    { label: "Tipo de projeto", value: project.category },
+    { label: "Papel", value: project.roleSummary },
     { label: "Status", value: project.status },
-    ...(project.year ? [{ label: "Ano", value: project.year }] : []),
-    {
-      label: "Stack principal",
-      value: project.technologies.slice(0, 4).join(" · "),
-    },
+    { label: "Ano", value: project.year },
   ];
 
   return (
@@ -44,8 +38,26 @@ export function ProjectOverview({ project }: ProjectOverviewProps) {
                 O projeto em perspectiva.
               </h2>
               <p className="mt-6 max-w-2xl text-base leading-7 text-foreground-secondary sm:text-lg sm:leading-8">
-                {project.overview}
+                {project.overview.description}
               </p>
+              <dl className="mt-8 grid gap-6 border-t border-border pt-6 sm:grid-cols-2">
+                <div>
+                  <dt className="font-mono text-[0.6875rem] tracking-[0.12em] text-foreground-muted uppercase">
+                    Objetivo
+                  </dt>
+                  <dd className="mt-2 text-sm leading-6 text-foreground-secondary">
+                    {project.overview.objective}
+                  </dd>
+                </div>
+                <div>
+                  <dt className="font-mono text-[0.6875rem] tracking-[0.12em] text-foreground-muted uppercase">
+                    Contexto
+                  </dt>
+                  <dd className="mt-2 text-sm leading-6 text-foreground-secondary">
+                    {project.overview.context}
+                  </dd>
+                </div>
+              </dl>
             </div>
 
             <dl className="grid gap-x-8 sm:grid-cols-2">

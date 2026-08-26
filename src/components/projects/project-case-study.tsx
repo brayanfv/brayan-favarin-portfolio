@@ -1,13 +1,16 @@
 import { ArrowRight } from "lucide-react";
 
 import { Container } from "@/components/layout/container";
+import { ProjectArchitecture } from "@/components/projects/project-architecture";
+import { ProjectDetailGrid } from "@/components/projects/project-detail-grid";
 import { ProjectGallery } from "@/components/projects/project-gallery";
 import { ProjectHero } from "@/components/projects/project-hero";
+import { ProjectLinks } from "@/components/projects/project-links";
 import { ProjectNavigation } from "@/components/projects/project-navigation";
 import { ProjectOverview } from "@/components/projects/project-overview";
 import { ProjectSection } from "@/components/projects/project-section";
+import { ProjectStack } from "@/components/projects/project-stack";
 import { AnimatedSection } from "@/components/shared/animated-section";
-import { TechnologyTag } from "@/components/shared/technology-tag";
 import { PrimaryButton } from "@/components/ui/primary-button";
 import { contactSectionData } from "@/data/contact";
 import type { Project } from "@/types/project";
@@ -23,10 +26,6 @@ export function ProjectCaseStudy({
   previousProject,
   project,
 }: ProjectCaseStudyProps) {
-  let visibleSectionIndex = 0;
-  const getNextSectionIndex = () =>
-    String(++visibleSectionIndex).padStart(2, "0");
-
   return (
     <article>
       <ProjectHero project={project} />
@@ -34,108 +33,81 @@ export function ProjectCaseStudy({
 
       <Container>
         <div className="mx-auto max-w-5xl">
-          {project.context ? (
-            <ProjectSection
-              description={project.context}
-              id="contexto"
-              index={getNextSectionIndex()}
-              title="Contexto"
-            />
-          ) : null}
+          <ProjectSection
+            id="o-que-este-projeto-demonstra"
+            index="01"
+            title="O que este projeto demonstra"
+          >
+            <ProjectDetailGrid items={project.demonstrates} />
+          </ProjectSection>
 
-          {project.problem ? (
-            <ProjectSection
-              description={project.problem}
-              id="problema"
-              index={getNextSectionIndex()}
-              title="O problema"
-            />
-          ) : null}
+          <ProjectSection id="meu-papel" index="02" title="Meu papel">
+            <ProjectDetailGrid items={project.roles} />
+          </ProjectSection>
 
-          {project.solution ? (
-            <ProjectSection
-              description={project.solution}
-              id="solucao"
-              index={getNextSectionIndex()}
-              title="A solução"
-            />
-          ) : null}
+          <ProjectSection id="funcionalidades" index="03" title="Funcionalidades">
+            <ProjectDetailGrid items={project.features} />
+          </ProjectSection>
 
-          {project.features && project.features.length > 0 ? (
-            <ProjectSection
-              id="funcionalidades"
-              index={getNextSectionIndex()}
-              items={project.features}
-              title="Principais funcionalidades"
-            />
-          ) : null}
+          <ProjectGallery index="04" project={project} />
+
+          <ProjectSection id="arquitetura" index="05" title="Arquitetura">
+            <ProjectArchitecture architecture={project.architecture} />
+          </ProjectSection>
+
+          <ProjectSection id="stack-tecnica" index="06" title="Stack técnica">
+            <ProjectStack groups={project.stack} />
+          </ProjectSection>
 
           <ProjectSection
-            id="tecnologias"
-            index={getNextSectionIndex()}
-            title="Tecnologias"
+            id="decisoes-tecnicas"
+            index="07"
+            title="Decisões técnicas"
           >
-            <ul
-              aria-label={`Stack completa de ${project.title}`}
-              className="flex flex-wrap gap-2"
-            >
-              {project.technologies.map((technology) => (
-                <li key={technology}>
-                  <TechnologyTag label={technology} />
+            <ProjectDetailGrid items={project.decisions} />
+          </ProjectSection>
+
+          <ProjectSection id="aprendizados" index="08" title="Aprendizados">
+            <ul className="grid gap-x-8 gap-y-4 md:grid-cols-2">
+              {project.learnings.map((learning) => (
+                <li
+                  className="grid grid-cols-[0.5rem_minmax(0,1fr)] gap-3 text-sm leading-6 text-foreground-secondary sm:text-base"
+                  key={learning}
+                >
+                  <span
+                    aria-hidden="true"
+                    className="mt-[0.65rem] size-1 rounded-full bg-primary"
+                  />
+                  <span>{learning}</span>
                 </li>
               ))}
             </ul>
           </ProjectSection>
 
-          {project.architecture && project.architecture.length > 0 ? (
-            <ProjectSection
-              id="arquitetura"
-              index={getNextSectionIndex()}
-              items={project.architecture}
-              title="Arquitetura"
-            />
-          ) : null}
+          <ProjectSection id="resultado" index="09" title="Resultado">
+            <p className="max-w-3xl text-base leading-7 text-foreground-secondary sm:text-lg sm:leading-8">
+              {project.result.description}
+            </p>
+            <ul className="mt-7 grid gap-x-8 gap-y-4 md:grid-cols-2">
+              {project.result.highlights.map((highlight) => (
+                <li
+                  className="grid grid-cols-[0.5rem_minmax(0,1fr)] gap-3 text-sm leading-6 text-foreground-secondary sm:text-base"
+                  key={highlight}
+                >
+                  <span
+                    aria-hidden="true"
+                    className="mt-[0.65rem] size-1 rounded-full bg-primary"
+                  />
+                  <span>{highlight}</span>
+                </li>
+              ))}
+            </ul>
+          </ProjectSection>
 
-          {project.decisions && project.decisions.length > 0 ? (
-            <ProjectSection
-              id="decisoes"
-              index={getNextSectionIndex()}
-              items={project.decisions}
-              title="Decisões técnicas"
-            />
-          ) : null}
+          <ProjectSection id="links" index="10" title="Links">
+            <ProjectLinks project={project} />
+          </ProjectSection>
 
-          {project.challenges && project.challenges.length > 0 ? (
-            <ProjectSection
-              id="desafios"
-              index={getNextSectionIndex()}
-              items={project.challenges}
-              title="Desafios"
-            />
-          ) : null}
-
-          {project.learnings && project.learnings.length > 0 ? (
-            <ProjectSection
-              id="aprendizados"
-              index={getNextSectionIndex()}
-              items={project.learnings}
-              title="Aprendizados"
-            />
-          ) : null}
-
-          {project.nextSteps && project.nextSteps.length > 0 ? (
-            <ProjectSection
-              id="proximos-passos"
-              index={getNextSectionIndex()}
-              items={project.nextSteps}
-              title="Próximos passos"
-            />
-          ) : null}
-
-          <ProjectGallery
-            index={getNextSectionIndex()}
-            project={project}
-          />
           <ProjectNavigation
             nextProject={nextProject}
             previousProject={previousProject}

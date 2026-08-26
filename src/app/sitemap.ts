@@ -13,7 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...projects.map((project) => ({
       url: new URL(`/projetos/${project.slug}`, siteConfig.url).toString(),
       changeFrequency: "monthly" as const,
-      priority: project.featured ? 0.9 : 0.8,
+      priority: 0.8,
     })),
   ];
 }

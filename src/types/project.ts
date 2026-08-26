@@ -4,12 +4,50 @@ export type ProjectStatus =
   | "Em evolução"
   | "Planejado";
 
-export type ProjectVisual = "api" | "portfolio";
+export type ProjectStackCategory =
+  | "Frontend"
+  | "Backend"
+  | "Banco"
+  | "Infraestrutura"
+  | "Qualidade";
+
+export interface ProjectContentItem {
+  title: string;
+  description: string;
+}
 
 export interface ProjectGalleryItem {
   src: string;
   alt: string;
-  caption?: string;
+  title: string;
+  description: string;
+  objective: string;
+}
+
+export interface ProjectArchitectureLayer {
+  name: string;
+  description: string;
+}
+
+export interface ProjectArchitecture {
+  layers: readonly ProjectArchitectureLayer[];
+  supportingItems: readonly string[];
+}
+
+export interface ProjectStackGroup {
+  category: ProjectStackCategory;
+  technologies: readonly string[];
+}
+
+export interface ProjectOverview {
+  description: string;
+  objective: string;
+  context: string;
+}
+
+export interface ProjectResult {
+  description: string;
+  highlights: readonly string[];
 }
 
 export interface Project {
@@ -17,27 +55,26 @@ export interface Project {
   title: string;
   subtitle: string;
   description: string;
-  shortDescription?: string;
-  technologies: readonly string[];
+  shortDescription: string;
+  mainTechnologies: readonly string[];
   status: ProjectStatus;
-  featured: boolean;
   repositoryUrl?: string;
   demoUrl?: string;
-  image?: string;
+  documentationUrl?: string;
+  image: string;
   imageAlt: string;
-  year?: string;
-  category?: string;
-  role?: string;
-  visual: ProjectVisual;
-  overview: string;
-  context?: string;
-  problem?: string;
-  solution?: string;
-  features?: readonly string[];
-  architecture?: readonly string[];
-  challenges?: readonly string[];
-  decisions?: readonly string[];
-  learnings?: readonly string[];
-  gallery?: readonly ProjectGalleryItem[];
-  nextSteps?: readonly string[];
+  heroImageEmphasis?: boolean;
+  year: string;
+  category: string;
+  roleSummary: string;
+  overview: ProjectOverview;
+  demonstrates: readonly ProjectContentItem[];
+  roles: readonly ProjectContentItem[];
+  features: readonly ProjectContentItem[];
+  gallery: readonly ProjectGalleryItem[];
+  architecture: ProjectArchitecture;
+  stack: readonly ProjectStackGroup[];
+  decisions: readonly ProjectContentItem[];
+  learnings: readonly string[];
+  result: ProjectResult;
 }
