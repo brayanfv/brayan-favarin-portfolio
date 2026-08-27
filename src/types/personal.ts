@@ -1,12 +1,10 @@
 export interface HeroContent {
-  description: readonly string[];
-  featuredTechnologies: readonly string[];
+  dynamicMessages: readonly string[];
+  proposal: string;
   technicalFlow: readonly {
     detail: string;
     label: string;
   }[];
-  titleHighlight: string;
-  titleLead: string;
 }
 
 export interface AboutContent {

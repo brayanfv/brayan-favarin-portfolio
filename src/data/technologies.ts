@@ -8,7 +8,9 @@ export const technologiesSectionData = {
   eyebrow: "04 / Tecnologias",
   title: "Ferramentas que utilizo para transformar ideias em aplicações.",
   description:
-    "Tecnologias e práticas utilizadas na construção de APIs, interfaces, aplicações mobile e soluções completas.",
+    "Tecnologias, ferramentas e boas práticas utilizadas no desenvolvimento de aplicações completas, da arquitetura e backend ao frontend, banco de dados e preparação para produção.",
+  focusDescription:
+    "As tecnologias marcadas como Foco representam a base da minha stack principal e estão presentes na maior parte dos projetos.",
   practicesDescription:
     "Princípios presentes na forma como organizo e desenvolvo soluções.",
 } as const;
@@ -26,12 +28,14 @@ export const technologies = [
     name: "Java",
     category: "Backend",
     highlighted: true,
+    description: "Backend principal para o desenvolvimento de APIs REST.",
     order: 1,
   },
   {
     name: "Spring Boot",
     category: "Backend",
     highlighted: true,
+    description: "Framework para construir aplicações Java escaláveis.",
     order: 2,
   },
   {
@@ -63,6 +67,7 @@ export const technologies = [
     name: "Angular",
     category: "Frontend",
     highlighted: true,
+    description: "Framework principal para interfaces web modernas.",
     order: 1,
   },
   {
@@ -84,6 +89,7 @@ export const technologies = [
     name: "TypeScript",
     category: "Frontend",
     highlighted: true,
+    description: "Linguagem para aplicações frontend robustas e organizadas.",
     order: 5,
   },
   {
@@ -115,6 +121,7 @@ export const technologies = [
     name: "PostgreSQL",
     category: "Bancos de dados",
     highlighted: true,
+    description: "Banco relacional presente na maior parte dos projetos.",
     order: 1,
   },
   {
@@ -136,6 +143,7 @@ export const technologies = [
     name: "Git",
     category: "Ferramentas e DevOps",
     highlighted: true,
+    description: "Versionamento de código e colaboração em equipe.",
     order: 1,
   },
   {
@@ -147,6 +155,7 @@ export const technologies = [
     name: "Docker",
     category: "Ferramentas e DevOps",
     highlighted: true,
+    description: "Containerização e preparação consistente para produção.",
     order: 3,
   },
   {

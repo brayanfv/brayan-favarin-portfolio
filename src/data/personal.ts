@@ -8,38 +8,31 @@ export const personalData = {
   location: siteConfig.location,
   education: "Ciência da Computação — UNESC",
   area: "Desenvolvimento Full Stack",
-  focus: "Java, Spring Boot e aplicações web",
+  focus: "Java, Spring Boot, Angular e PostgreSQL",
   availability: "Disponível para oportunidades",
   hero: {
-    titleLead: "Desenvolvedor Full Stack criando",
-    titleHighlight: "aplicações modernas e completas.",
-    description: [
-      "Sou estudante de Ciência da Computação e desenvolvedor com experiência em Java, Spring Boot, Angular e desenvolvimento de sistemas do backend ao frontend.",
-      "Transformo ideias e problemas reais em soluções organizadas, funcionais e fáceis de utilizar.",
-    ],
-    featuredTechnologies: [
-      "Java",
-      "Spring Boot",
-      "Angular",
-      "TypeScript",
-      "PostgreSQL",
-      "Docker",
+    proposal:
+      "Especializado em construir aplicações completas, organizadas e preparadas para produção.",
+    dynamicMessages: [
+      "Planejando soluções.",
+      "Projetando arquitetura.",
+      "Desenvolvendo aplicações.",
+      "Preparando para produção.",
     ],
     technicalFlow: [
-      { detail: "REST", label: "API" },
-      { detail: "interface", label: "frontend" },
-      { detail: "data", label: "database" },
-      { detail: "release", label: "deploy" },
+      { detail: "requisitos e escopo", label: "planejamento" },
+      { detail: "sistemas sustentáveis", label: "arquitetura" },
+      { detail: "frontend e backend", label: "desenvolvimento" },
+      { detail: "testes e entrega", label: "qualidade" },
     ],
   },
   about: {
     eyebrow: "01 / Sobre",
     title: "Desenvolvimento além do código.",
     paragraphs: [
-      "Sou estudante de Ciência da Computação na UNESC e desenvolvedor Full Stack com experiência na construção de aplicações utilizando Java, Spring Boot, Angular e bancos de dados relacionais.",
-      "Ao longo da minha trajetória, participei do desenvolvimento de sistemas reais em ambientes colaborativos, trabalhando com regras de negócio, integração entre frontend e backend, criação de interfaces e organização de fluxos.",
-      "Gosto de entender o problema antes de começar a programar e busco desenvolver soluções que sejam organizadas, funcionais e simples de usar.",
-      "Atualmente, estou aprimorando minhas habilidades por meio de projetos próprios, estudos e experiências práticas, com o objetivo de atuar profissionalmente no desenvolvimento de software.",
+      "Atuo como Desenvolvedor Full Stack na construção de aplicações completas, unindo Java, Spring Boot, Angular e bancos de dados relacionais para transformar necessidades de negócio em soluções confiáveis e bem estruturadas.",
+      "Em projetos reais, contribuo para APIs REST, integração entre frontend e backend, definição de arquitetura, regras de negócio e evolução contínua de funcionalidades em ambientes colaborativos.",
+      "Gosto de compreender o problema antes de escrever código e de tomar decisões que valorizem organização, arquitetura, qualidade e simplicidade. Mantenho o aprendizado contínuo como parte do trabalho e da minha evolução profissional.",
     ],
   },
 } as const satisfies PersonalData;
@@ -58,7 +51,7 @@ export const aboutQuickFacts: QuickFact[] = [
     value: personalData.area,
   },
   {
-    label: "Foco principal",
+    label: "Stack principal",
     value: personalData.focus,
   },
 ];

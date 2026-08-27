@@ -4,52 +4,51 @@ export const experienceSectionData = {
   eyebrow: "03 / Experiência",
   title: "Experiências que ajudaram a construir minha forma de trabalhar.",
   description:
-    "Uma trajetória marcada por desenvolvimento de software, colaboração em equipe, responsabilidade e contato com problemas reais.",
+    "Experiência prática no desenvolvimento de aplicações web, atuando em projetos reais com tecnologias modernas de frontend, backend e banco de dados.",
 } as const;
 
 export const experiences = [
   {
-    company: "UNESC Labs — Simples Dental",
-    role: "Estagiário Bolsista em Desenvolvimento de Software",
-    period: "2025",
+    company: "Mohawk Brasil",
+    role: "Estagiário de Desenvolvimento",
+    context: "UNESC Labs",
+    period: "Ago 2025 — Jan 2026",
     description: [
-      "Atuação no desenvolvimento e manutenção de aplicações utilizando Java, Spring Boot e Angular.",
-      "Participação em reuniões diárias, organização de tarefas, desenvolvimento de funcionalidades, implementação de regras de negócio e integração entre frontend e backend.",
+      "Atuação no desenvolvimento de interfaces e funcionalidades para um sistema interno de gestão empresarial, utilizando Angular no frontend e colaborando com integrações ao backend em Python. Participação na evolução de funcionalidades e na manutenção de fluxos existentes em ambiente colaborativo com Git, Docker e PostgreSQL.",
     ],
-    responsibilities: [
+    competencies: [
+      "Desenvolvimento Frontend",
+      "Integração Frontend/Backend",
+      "Trabalho em equipe",
+      "Versionamento com Git",
       "Desenvolvimento de funcionalidades",
-      "Implementação de regras de negócio",
-      "Integração entre frontend e backend",
-      "Correção de problemas",
-      "Participação em reuniões diárias",
-      "Trabalho com prazos e entregas",
     ],
     technologies: [
-      "Java",
-      "Spring Boot",
       "Angular",
       "TypeScript",
-      "Banco de dados",
+      "Python",
+      "PostgreSQL",
+      "Docker",
       "Git",
     ],
     order: 1,
   },
   {
-    company: "UNESC Labs — Mohawk",
-    role: "Estagiário Bolsista em Desenvolvimento Frontend",
-    period: "2025",
+    company: "Simples Dental",
+    role: "Estagiário de Desenvolvimento",
+    context: "UNESC Labs",
+    period: "Jan 2025 — Ago 2025",
     description: [
-      "Atuação no desenvolvimento visual de um sistema de controle interno, com foco em criação de telas, componentes reutilizáveis e organização de fluxos utilizando Angular.",
+      "Participação no desenvolvimento e na manutenção de aplicações web com Spring Boot e Angular, contribuindo para APIs REST, integração entre frontend e backend, modelagem de dados e evolução de funcionalidades em ambiente colaborativo.",
     ],
-    responsibilities: [
-      "Desenvolvimento de interfaces",
-      "Criação de componentes reutilizáveis",
-      "Organização de fluxos",
-      "Ajustes visuais",
-      "Participação em reuniões com supervisores",
-      "Colaboração com a equipe de desenvolvimento",
+    competencies: [
+      "Desenvolvimento Full Stack",
+      "APIs REST",
+      "Integração Frontend/Backend",
+      "Modelagem de dados",
+      "Trabalho em equipe",
     ],
-    technologies: ["Angular", "TypeScript", "HTML", "SCSS", "Git"],
+    technologies: ["Java", "Spring Boot", "Angular", "PostgreSQL", "Git"],
     order: 2,
   },
 ] as const satisfies readonly Experience[];

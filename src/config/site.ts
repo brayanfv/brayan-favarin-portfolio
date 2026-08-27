@@ -20,6 +20,11 @@ interface SiteConfig {
     alt: string;
     url: string;
   };
+  photo: {
+    alt: string;
+    enabled: boolean;
+    src: string;
+  };
   publisher: string;
   resume: {
     enabled: boolean;
@@ -74,6 +79,11 @@ export const siteConfig: SiteConfig = {
   openGraphImage: {
     url: "/images/og/portfolio-brayan-favarin.png",
     alt: "Brayan Favarin — Desenvolvedor Full Stack",
+  },
+  photo: {
+    enabled: false,
+    src: "/images/profile/brayan-favarin.jpg",
+    alt: "Foto profissional de Brayan Favarin",
   },
   social: {
     github: "https://github.com/brayanfv",

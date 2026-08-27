@@ -32,7 +32,14 @@ export function SkillsSection() {
           />
         </AnimatedSection>
 
-        <div className="mt-14 grid gap-x-12 gap-y-12 lg:grid-cols-2">
+        <p className="mt-6 max-w-2xl text-sm leading-6 text-foreground-secondary">
+          <span className="mr-2 font-mono text-[0.6875rem] tracking-[0.12em] text-primary-light uppercase">
+            Foco
+          </span>
+          {technologiesSectionData.focusDescription}
+        </p>
+
+        <div className="mt-12 grid gap-x-12 gap-y-12 lg:grid-cols-2">
           {mainGroups.map((group, index) => (
             <AnimatedSection delay={0.05 + index * 0.06} key={group.category}>
               <TechnologyGroup
@@ -44,8 +51,8 @@ export function SkillsSection() {
         </div>
 
         {practicesGroup ? (
-          <AnimatedSection className="mt-16" delay={0.18}>
-            <div className="border-t border-border pt-6">
+          <AnimatedSection className="mt-14" delay={0.18}>
+            <div className="border-t border-border/70 pt-7">
               <div className="grid gap-6 lg:grid-cols-[15rem_minmax(0,1fr)]">
                 <div>
                   <p className="font-mono text-[0.625rem] text-primary-light">
@@ -59,7 +66,7 @@ export function SkillsSection() {
                   </p>
                 </div>
 
-                <ul className="flex flex-wrap content-start gap-2">
+                <ul className="grid content-start gap-2 sm:grid-cols-2 xl:grid-cols-3">
                   {practicesGroup.items.map((technology) => (
                     <TechnologyItem
                       key={`${technology.category}-${technology.name}`}

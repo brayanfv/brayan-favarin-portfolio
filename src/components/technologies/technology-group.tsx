@@ -11,6 +11,14 @@ export function TechnologyGroup({
   index,
 }: TechnologyGroupProps) {
   const headingId = `technology-group-${index}`;
+  const primaryTechnologies = group.items.filter(
+    (technology) => technology.highlighted,
+  );
+  const complementaryTechnologies = group.items.filter(
+    (technology) => !technology.highlighted,
+  );
+  const primaryHeadingId = `${headingId}-primary`;
+  const complementaryHeadingId = `${headingId}-complementary`;
 
   return (
     <section
@@ -32,14 +40,51 @@ export function TechnologyGroup({
         </h3>
       </div>
 
-      <ul className="mt-5 grid gap-2 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-        {group.items.map((technology) => (
-          <TechnologyItem
-            key={`${technology.category}-${technology.name}`}
-            technology={technology}
-          />
-        ))}
-      </ul>
+      {primaryTechnologies.length ? (
+        <div className="mt-5">
+          <p
+            className="font-mono text-[0.625rem] tracking-[0.12em] text-primary-light uppercase"
+            id={primaryHeadingId}
+          >
+            Stack principal
+          </p>
+          <ul
+            aria-labelledby={primaryHeadingId}
+            className="mt-3 grid auto-rows-fr gap-2 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2"
+          >
+            {primaryTechnologies.map((technology) => (
+              <TechnologyItem
+                key={`${technology.category}-${technology.name}`}
+                technology={technology}
+                variant="primary"
+              />
+            ))}
+          </ul>
+        </div>
+      ) : null}
+
+      {complementaryTechnologies.length ? (
+        <div className={primaryTechnologies.length ? "mt-7" : "mt-5"}>
+          <p
+            className="font-mono text-[0.625rem] tracking-[0.12em] text-foreground-muted uppercase"
+            id={complementaryHeadingId}
+          >
+            Tecnologias complementares
+          </p>
+          <ul
+            aria-labelledby={complementaryHeadingId}
+            className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2"
+          >
+            {complementaryTechnologies.map((technology) => (
+              <TechnologyItem
+                key={`${technology.category}-${technology.name}`}
+                technology={technology}
+                variant="complementary"
+              />
+            ))}
+          </ul>
+        </div>
+      ) : null}
     </section>
   );
 }

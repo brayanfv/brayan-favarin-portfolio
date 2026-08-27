@@ -1,17 +1,14 @@
-import { ArrowRight, Download, ExternalLink } from "lucide-react";
+import { ArrowRight, Download } from "lucide-react";
+import Image from "next/image";
 
 import { Container } from "@/components/layout/container";
-import { AnimatedSection } from "@/components/shared/animated-section";
-import { TechnologyTag } from "@/components/shared/technology-tag";
+import { HeroDynamicMessage } from "@/components/sections/hero-dynamic-message";
 import { PrimaryButton } from "@/components/ui/primary-button";
 import { SecondaryButton } from "@/components/ui/secondary-button";
 import { siteConfig } from "@/config/site";
 import { personalData } from "@/data/personal";
-import { socialLinks } from "@/data/social-links";
 
 export function HeroSection() {
-  const githubUrl = socialLinks.find((link) => link.label === "GitHub")?.href;
-
   return (
     <section
       className="anchor-target relative flex min-h-svh items-center overflow-hidden border-b border-border pt-28 pb-20 sm:pt-32 sm:pb-24"
@@ -27,64 +24,29 @@ export function HeroSection() {
         style={{ background: "var(--gradient-glow)" }}
       />
 
-      <Container className="relative grid items-center gap-16 lg:grid-cols-[minmax(0,1.25fr)_minmax(20rem,0.75fr)] lg:gap-12">
+      <Container className="relative grid items-center gap-14 lg:grid-cols-[minmax(0,1.25fr)_minmax(20rem,0.75fr)] lg:gap-12">
         <div className="min-w-0">
-          <AnimatedSection>
-            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/80 px-3 py-1.5 font-mono text-xs text-foreground-secondary">
-              <span
-                aria-hidden="true"
-                className="size-1.5 rounded-full bg-success shadow-[0_0_10px_rgb(34_197_94/0.45)]"
-              />
-              {personalData.availability}
-            </div>
-          </AnimatedSection>
+          <h1 className="max-w-4xl text-[clamp(3rem,7vw,5.5rem)] leading-[0.94] font-semibold tracking-[-0.06em] text-balance text-foreground">
+            {personalData.name}
+          </h1>
 
-          <AnimatedSection className="mt-7" delay={0.06}>
-            <h1 className="max-w-4xl text-[clamp(2.5rem,6vw,4.5rem)] leading-[0.98] font-semibold tracking-[-0.055em] text-balance text-foreground">
-              {personalData.hero.titleLead}{" "}
-              <span className="bg-[image:var(--gradient-primary)] bg-clip-text text-transparent">
-                {personalData.hero.titleHighlight}
-              </span>
-            </h1>
-          </AnimatedSection>
+          <p className="mt-6 font-mono text-sm tracking-[0.14em] text-primary-light uppercase sm:text-base">
+            {personalData.role}
+          </p>
 
-          <AnimatedSection
-            className="mt-7 max-w-2xl space-y-4"
-            delay={0.12}
-          >
-            {personalData.hero.description.map((paragraph) => (
-              <p
-                className="text-base leading-7 text-foreground-secondary sm:text-lg sm:leading-8"
-                key={paragraph}
-              >
-                {paragraph}
-              </p>
-            ))}
-          </AnimatedSection>
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-foreground-secondary sm:text-xl sm:leading-9">
+            {personalData.hero.proposal}
+          </p>
 
-          <AnimatedSection
-            className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap"
-            delay={0.18}
-          >
+          <div className="mt-7 border-l border-primary/60 pl-4">
+            <HeroDynamicMessage messages={personalData.hero.dynamicMessages} />
+          </div>
+
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <PrimaryButton className="sm:w-auto" href="#projetos">
               Ver projetos
               <ArrowRight aria-hidden="true" size={17} strokeWidth={1.8} />
             </PrimaryButton>
-            {githubUrl ? (
-              <SecondaryButton
-                className="sm:w-auto"
-                href={githubUrl}
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                GitHub
-                <ExternalLink
-                  aria-hidden="true"
-                  size={16}
-                  strokeWidth={1.8}
-                />
-              </SecondaryButton>
-            ) : null}
             {siteConfig.resume.enabled ? (
               <SecondaryButton
                 className="sm:w-auto"
@@ -95,31 +57,38 @@ export function HeroSection() {
                 Baixar currículo
               </SecondaryButton>
             ) : null}
-          </AnimatedSection>
-
-          <div className="mt-10">
-            <AnimatedSection delay={0.22}>
-              <p className="mb-3 font-mono text-[0.6875rem] tracking-[0.16em] text-foreground-muted uppercase">
-                Stack principal
-              </p>
-            </AnimatedSection>
-            <div className="flex flex-wrap gap-2">
-              {personalData.hero.featuredTechnologies.map(
-                (technology, index) => (
-                  <AnimatedSection delay={0.24 + index * 0.035} key={technology}>
-                    <TechnologyTag label={technology} />
-                  </AnimatedSection>
-                ),
-              )}
-            </div>
           </div>
+
+          <p className="mt-7 inline-flex items-center gap-2 font-mono text-xs text-foreground-muted">
+            <span
+              aria-hidden="true"
+              className="size-1.5 rounded-full bg-success shadow-[0_0_10px_rgb(34_197_94/0.45)]"
+            />
+            {personalData.availability}
+          </p>
         </div>
 
-        <AnimatedSection className="mx-auto w-full max-w-md" delay={0.16}>
-          <TechnicalPanel />
-        </AnimatedSection>
+        <div className="mx-auto w-full max-w-md">
+          {siteConfig.photo.enabled ? <ProfilePhoto /> : <TechnicalPanel />}
+        </div>
       </Container>
     </section>
+  );
+}
+
+function ProfilePhoto() {
+  return (
+    <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-border bg-card shadow-[0_24px_80px_rgb(0_0_0/0.35)]">
+      <Image
+        alt={siteConfig.photo.alt}
+        className="object-cover"
+        height={800}
+        priority
+        sizes="(min-width: 1024px) 30vw, (min-width: 640px) 50vw, 100vw"
+        src={siteConfig.photo.src}
+        width={640}
+      />
+    </div>
   );
 }
 
@@ -133,8 +102,8 @@ function TechnicalPanel() {
       <div className="absolute -top-24 -right-24 size-64 rounded-full bg-primary/10 blur-3xl" />
 
       <div className="relative flex items-center justify-between border-b border-border pb-4 font-mono text-[0.6875rem] text-foreground-muted">
-        <span>solution.flow</span>
-        <span className="text-success">online</span>
+        <span>delivery.flow</span>
+        <span className="text-success">em foco</span>
       </div>
 
       <div className="relative mt-7 grid grid-cols-2 gap-5">
@@ -154,6 +123,7 @@ function TechnicalPanel() {
             </p>
             {index % 2 === 0 ? (
               <span
+                aria-hidden="true"
                 className="absolute -right-3 top-1/2 h-px w-3 bg-primary/60"
               />
             ) : null}
@@ -162,9 +132,9 @@ function TechnicalPanel() {
       </div>
 
       <div className="relative mt-6 flex items-center gap-3 rounded-lg border border-primary/25 bg-primary/5 px-4 py-3 font-mono text-[0.6875rem]">
-        <span className="text-primary">idea</span>
+        <span className="text-primary">ideia</span>
         <span className="h-px flex-1 bg-gradient-to-r from-primary/70 to-primary/10" />
-        <span className="text-foreground-secondary">produto funcional</span>
+        <span className="text-foreground-secondary">software com qualidade</span>
       </div>
     </div>
   );
