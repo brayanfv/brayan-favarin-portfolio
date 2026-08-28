@@ -12,11 +12,13 @@ Identidade, URL base, dados sociais, contato, SEO e currículo ficam em
 `src/config/site.ts`. A URL usa `NEXT_PUBLIC_SITE_URL` e mantém
 `http://localhost:3000` apenas como fallback de desenvolvimento.
 
-## Placeholders substituíveis
+## Imagens de projetos substituíveis
 
-Enquanto não existem capturas reais, os projetos usam composições locais em
-HTML e CSS. Quando `image` é preenchido em `projects.ts`, o mesmo layout passa a
-usar `next/image` automaticamente.
+O Professional Management System utiliza capturas reais locais com `next/image`.
+O Portfólio Pessoal usa temporariamente a arte Open Graph como representação
+visual. Novas capturas entram em `public/images/projects/<slug>/` e são
+referenciadas pelo objeto correspondente em `projects.ts`, sem exigir mudança de
+layout.
 
 ## SEO sem dependências externas
 
@@ -49,3 +51,29 @@ continuam visíveis caso o serviço esteja indisponível.
 Navbar e reveals continuam como Client Components. Links sociais e itens de
 tecnologia passivos foram mantidos como Server Components, reduzindo hidratação
 sem alterar a composição visual.
+
+## Especificações V2 canônicas
+
+A especificação de Projetos V2 foi consolidada em
+`docs/portfolio-v2-projects-specification.md`. O documento descreve o padrão
+único para cards, estudos de caso, galeria, arquitetura e adição de novos
+projetos. O Blueprint fundacional permanece como referência histórica.
+
+## Hero com mensagem dinâmica isolada
+
+A mensagem dinâmica do Hero é um Client Component isolado. Ela usa digitação e
+cursor discretos apenas nessa área; nome, cargo e proposta permanecem fixos.
+Com `prefers-reduced-motion`, a mensagem inicial é exibida sem animação.
+
+## Documentação e histórico centralizados
+
+`CHANGELOG.md` é a única fonte oficial de histórico. O README funciona como
+porta de entrada para execução, manutenção e deploy; a pasta `docs/` mantém
+especificações, decisões, estado do projeto e auditorias. Documentos históricos
+recebem marcação explícita para não competir com as fontes atuais.
+
+## Qualidade contínua no GitHub
+
+O workflow de qualidade executa lint, checagem de tipos e build em pushes e pull
+requests. Ele não realiza deploy e complementa as validações locais descritas no
+README.

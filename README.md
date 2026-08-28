@@ -1,37 +1,64 @@
 # Portfólio — Brayan Favarin
 
-Portfólio profissional desenvolvido do zero para apresentar trajetória,
-experiências, tecnologias e projetos. O projeto segue uma identidade dark
-editorial tecnológica, arquitetura orientada a dados, acessibilidade e
-Server Components por padrão.
+Portfólio profissional de Brayan Favarin, Desenvolvedor Full Stack. A aplicação
+apresenta trajetória, tecnologias, experiências e estudos de caso em uma
+interface dark editorial, responsiva e orientada a dados.
+
+> Status: projeto pronto para execução local e validação de produção. O deploy
+> depende da URL HTTPS definitiva, das variáveis do Resend e de proteção contra
+> abuso no formulário.
+
+## Destaques
+
+- Homepage com Hero, Sobre, Projetos, Experiência, Tecnologias e Contato.
+- Estudos de caso gerados dinamicamente a partir de `src/data/projects.ts`.
+- Professional Management System como case principal, com frontend, backend,
+  autenticação JWT, PostgreSQL, Docker e capturas reais.
+- Formulário de contato acessível com validação compartilhada, honeypot e envio
+  server-side por Resend.
+- Currículo público disponível por configuração central.
+- SEO com metadata, canonical, Open Graph, Twitter Card, sitemap, robots e
+  ícone do App Router.
+- Acessibilidade com skip link, foco visível, navegação por teclado e suporte a
+  `prefers-reduced-motion`.
+
+## Projeto em destaque
+
+![Dashboard do Professional Management System](public/images/projects/professional-management-system/dashboard.png)
+
+As capturas do Professional Management System ficam em
+`public/images/projects/professional-management-system/` e são usadas pelo
+card, Hero e galeria do estudo de caso.
 
 ## Stack
 
-- Next.js 16 com App Router;
-- React 19;
+- Next.js 16 com App Router e React 19;
 - TypeScript em modo estrito;
-- Tailwind CSS 4;
-- Motion para reveals pontuais;
+- Tailwind CSS 4 e tokens CSS;
+- Motion para animações pontuais;
 - Lucide React para ícones;
 - Geist Sans e Geist Mono;
+- Zod para validação;
+- Resend para envio server-side do formulário;
 - ESLint com Core Web Vitals.
-- Resend para o envio server-side do formulário de contato.
-- Zod para validação compartilhada do formulário.
 
 ## Requisitos
 
 - Node.js 20.9 ou superior;
-- npm 10 ou superior.
+- npm.
 
 ## Instalação e execução local
 
-1. Instale as dependências:
+1. Instale exatamente as dependências do lockfile:
 
    ```bash
-   npm install
+   npm ci
    ```
 
-2. Copie as variáveis de ambiente:
+   Para atualizar dependências de forma intencional durante o desenvolvimento,
+   use `npm install`.
+
+2. Copie o arquivo de ambiente:
 
    ```bash
    cp .env.example .env.local
@@ -43,200 +70,171 @@ Server Components por padrão.
    Copy-Item .env.example .env.local
    ```
 
-3. Inicie o servidor:
+3. Inicie o ambiente local:
 
    ```bash
    npm run dev
    ```
 
-4. Acesse [http://localhost:3000](http://localhost:3000).
+4. Abra [http://localhost:3000](http://localhost:3000).
 
-## Verificações
+## Scripts
 
-```bash
-npm run lint
-npx tsc --noEmit
-npm run build
+| Comando | Finalidade |
+| --- | --- |
+| `npm run dev` | Inicia o servidor de desenvolvimento. |
+| `npm run lint` | Executa o ESLint. |
+| `npx tsc --noEmit` | Verifica os tipos sem gerar JavaScript. |
+| `npm run build` | Gera o build otimizado de produção. |
+| `npm run start` | Serve localmente um build já gerado. |
+
+O projeto ainda não possui suíte de testes automatizados. O workflow de
+qualidade do GitHub executa lint, tipos e build a cada push e pull request.
+
+## Variáveis de ambiente
+
+Copie `.env.example` para `.env.local`. Nunca versione `.env.local` nem
+valores reais de segredo.
+
+```env
+# URL pública, sem barra final. Em desenvolvimento, localhost é aceitável.
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+
+# Formulário de contato: somente server-side.
+RESEND_API_KEY=
+CONTACT_TO_EMAIL=
+CONTACT_FROM_EMAIL=
 ```
 
-Para executar localmente o resultado do build:
+### Formulário de contato e Resend
 
-```bash
-npm run start
-```
+O formulário envia uma requisição para `POST /api/contact`. Nome, e-mail e
+mensagem são validados no navegador e novamente no servidor. A API key não é
+exposta ao cliente; o e-mail informado pelo visitante é usado apenas como
+`replyTo`.
 
-O projeto ainda não possui uma suíte automatizada de testes. Lint, checagem de
-tipos e geração das rotas são validados pelo ESLint e pelo build do Next.js.
+Para testar o envio real:
+
+1. Crie uma API key na [Resend](https://resend.com/api-keys).
+2. Preencha as três variáveis do Resend apenas em `.env.local`.
+3. Use em `CONTACT_FROM_EMAIL` um remetente de domínio verificado na Resend.
+4. Reinicie `npm run dev`, envie uma mensagem e confirme o recebimento.
+
+Sem as variáveis obrigatórias, a rota falha de maneira controlada e o visitante
+recebe uma mensagem genérica. O honeypot reduz spam básico; antes de um deploy
+público, implemente rate limiting na plataforma de hospedagem ou na borda.
 
 ## Rotas
 
-- `/` — homepage;
-- `/projetos/professional-management-api`;
-- `/projetos/portfolio-pessoal`;
-- `/sitemap.xml`;
-- `/robots.txt`.
+| Rota | Descrição |
+| --- | --- |
+| `/` | Homepage do portfólio. |
+| `/projetos/professional-management-api` | Estudo de caso do Professional Management System. |
+| `/projetos/portfolio-pessoal` | Estudo de caso do portfólio. |
+| `/sitemap.xml` | Sitemap derivado dos projetos publicados. |
+| `/robots.txt` | Regras de indexação. |
 
-## Formulário de contato com Resend
+O ListaSmart permanece fora das rotas públicas enquanto não houver dados e
+conteúdo de estudo de caso aprovados.
 
-O formulário da seção Contato envia os dados para `POST /api/contact`. Nome,
-e-mail e mensagem são validados no navegador e novamente no servidor. A chave
-da Resend nunca é enviada ao navegador; links de e-mail, GitHub e LinkedIn
-continuam disponíveis como canais alternativos.
-
-1. Crie uma API key em [Resend](https://resend.com/api-keys).
-2. Copie `.env.example` para `.env.local`.
-3. Preencha somente em `.env.local`:
-
-   ```env
-   RESEND_API_KEY=
-   CONTACT_TO_EMAIL=
-   CONTACT_FROM_EMAIL=
-   ```
-
-4. Use em `CONTACT_FROM_EMAIL` um remetente pertencente a um domínio verificado
-   na Resend. Não use o e-mail do visitante como remetente: ele é usado apenas
-   como `replyTo`.
-5. Reinicie `npm run dev` depois de alterar variáveis de ambiente.
-
-Sem essas três variáveis, o endpoint falha de forma controlada e o visitante
-recebe uma mensagem genérica, sem dados técnicos. O formulário possui um
-honeypot simples; não há banco de dados ou CAPTCHA nesta versão.
-
-### Teste local
-
-Com as variáveis configuradas, execute `npm run dev`, preencha os três campos
-e envie uma mensagem. Confirme o recebimento em `CONTACT_TO_EMAIL` e responda
-ao e-mail para validar o `replyTo`. Para testar falhas, remova temporariamente
-uma das variáveis de `.env.local` e reinicie o servidor.
-
-### Variáveis na Vercel
-
-No projeto da Vercel, abra **Settings → Environment Variables** e adicione
-`RESEND_API_KEY`, `CONTACT_TO_EMAIL` e `CONTACT_FROM_EMAIL` para os ambientes
-necessários. Use o mesmo remetente de domínio verificado na Resend e faça um
-novo deploy depois de salvar as variáveis. Não use o prefixo `NEXT_PUBLIC_` em
-nenhuma dessas chaves.
-
-O ListaSmart é citado no blueprint, mas seu estudo de caso ainda não foi criado
-porque não existem dados aprovados suficientes. Um slug desconhecido utiliza a
-página 404 personalizada.
-
-## Estrutura principal
+## Arquitetura
 
 ```text
 public/
-├── documents/          # Currículo e documentos públicos
+├── documents/                         # Currículo público
 └── images/
-    ├── og/             # Imagem Open Graph global
-    └── projects/       # Capturas reais dos projetos
+    ├── og/                            # Arte Open Graph
+    ├── profile/                       # Foto futura, quando habilitada
+    └── projects/                      # Capturas dos projetos
 src/
-├── app/                # Rotas, layout, metadata, sitemap e robots
+├── app/                               # Rotas, metadata, sitemap e robots
 ├── components/
-│   ├── layout/         # Navbar, Footer e Container
-│   ├── projects/       # Cards e estudos de caso
-│   ├── sections/       # Seções da homepage
-│   ├── shared/         # Componentes compartilhados
-│   ├── technologies/   # Apresentação das tecnologias
-│   └── ui/             # Botões
-├── config/             # Configuração central do site
-├── data/               # Conteúdo tipado separado da interface
-├── lib/                # Utilitários e metadata
-└── types/              # Tipos e interfaces TypeScript
-docs/
-├── project-blueprint.md.txt
-├── tasks.md
-├── decisions.md
-└── changelog.md
+│   ├── contact/                       # Formulário
+│   ├── experience/                    # Timeline
+│   ├── layout/                        # Navbar, Footer e Container
+│   ├── projects/                      # Cards e estudos de caso
+│   ├── sections/                      # Seções da homepage
+│   ├── shared/                        # Elementos reutilizáveis
+│   ├── technologies/                  # Grupos e itens de tecnologia
+│   └── ui/                            # Botões
+├── config/                            # Configuração pública central
+├── data/                              # Conteúdo tipado
+├── lib/                               # Schema, metadata e utilitários
+└── types/                             # Contratos TypeScript
+docs/                                  # Decisões, especificações e auditorias
 ```
 
-## Alterando dados pessoais
+Server Components são o padrão. Apenas Navbar, formulário e animações que
+precisam de APIs do navegador são Client Components.
 
-Edite `src/config/site.ts` para atualizar:
+## Manutenção de conteúdo
 
-- nome, marca, cargo e localização;
-- descrição e palavras-chave de SEO;
-- GitHub e LinkedIn;
-- e-mail profissional;
-- URL pública;
-- configuração do currículo;
-- imagem Open Graph padrão.
+### Dados pessoais e SEO
 
-Textos biográficos e da homepage ficam em `src/data/personal.ts`. Os itens
-renderizados de contato são derivados por `src/data/social-links.ts`, sem
-duplicar URLs nos componentes.
+Atualize `src/config/site.ts` para alterar nome, cargo, localização, dados
+sociais, e-mail público, descrição SEO, URL do site, currículo e imagem Open
+Graph. Segredos nunca pertencem a esse arquivo.
 
-O endereço de contato atual é definido em `contact.email`. Se ele precisar ser
-removido temporariamente, mantenha o campo sem valor; o botão de e-mail e o
-respectivo link deixarão de ser renderizados.
+Os textos de Hero e Sobre ficam em `src/data/personal.ts`. Contato,
+experiências, tecnologias, navegação e redes sociais também possuem arquivos de
+dados próprios em `src/data/`.
 
-## Atualizando a URL do site
+### Projetos e imagens
 
-Defina `NEXT_PUBLIC_SITE_URL` em `.env.local` durante testes de produção e no
-ambiente da Vercel durante a publicação:
+1. Adicione ou atualize o objeto tipado em `src/data/projects.ts`.
+2. Use um `slug` único e preencha título, conteúdo do estudo de caso, stack e
+   links somente quando existirem.
+3. Adicione imagens em `public/images/projects/<slug>/`.
+4. Atualize `image`, `imageAlt` e, se aplicável, a galeria no mesmo objeto.
+5. Prefira WebP ou AVIF para novas imagens e mantenha proporções consistentes.
 
-```env
-NEXT_PUBLIC_SITE_URL=<URL_HTTPS_DE_PRODUCAO>
-```
+Cards, metadata, navegação entre projetos, rotas estáticas e sitemap derivam do
+array de projetos. Não duplique slugs em outros arquivos.
 
-Use a origem HTTPS definitiva, sem caminho e preferencialmente sem barra final.
-Enquanto a variável não for definida, canonicals, Open Graph, sitemap e robots
-usam `http://localhost:3000`, apropriado apenas para desenvolvimento.
+O Professional Management System já usa capturas reais. O case do Portfólio
+Pessoal usa temporariamente a arte Open Graph; substitua-a por capturas reais
+quando elas estiverem disponíveis.
 
-## Adicionando projetos
+### Currículo
 
-1. Inclua um objeto tipado no array de `src/data/projects.ts`.
-2. Use um `slug` único e válido.
-3. Preencha o conteúdo do estudo de caso e as tecnologias.
-4. Defina `repositoryUrl` e `demoUrl` somente quando os endereços existirem.
-5. Se necessário, adicione uma variante visual tipada ao placeholder.
-
-`generateStaticParams`, metadata, cards, navegação entre projetos e sitemap
-derivam desse array. Não é necessário duplicar o slug em outro arquivo.
-
-### Substituindo placeholders por imagens reais
-
-1. Adicione a imagem em `public/images/projects`.
-2. Atualize `image` em `src/data/projects.ts`.
-3. Atualize `imageAlt` com uma descrição objetiva.
-4. Prefira WebP ou AVIF.
-5. Use dimensões adequadas e uma proporção consistente.
-
-O card e a galeria detectam `image` e passam a utilizar `next/image`
-automaticamente; nenhuma mudança de layout é necessária.
-
-## Atualizando o currículo
-
-1. Mantenha ou substitua o arquivo em
-   `public/documents/brayan-favarin-cv.pdf`.
-2. Confirme o caminho `/documents/brayan-favarin-cv.pdf` em
-   `siteConfig.resume.path`.
-3. Mantenha `siteConfig.resume.enabled` como `true` somente enquanto o PDF
+1. Mantenha o PDF em `public/documents/brayan-favarin-cv.pdf`.
+2. Confirme `siteConfig.resume.path` como
+   `/documents/brayan-favarin-cv.pdf`.
+3. Mantenha `siteConfig.resume.enabled` como `true` apenas enquanto o PDF
    existir.
 
-O botão "Baixar currículo" aparece no Hero somente quando a flag está
-ativada. Caso o arquivo seja removido, desative a flag para evitar links
-quebrados.
+O botão **Baixar currículo** é exibido no Hero somente com a flag ativada.
 
 ## Preparação para deploy na Vercel
 
-Antes de publicar:
+Nenhum deploy é executado por este repositório. Antes do primeiro deploy:
 
-1. confirme os dados pessoais e links;
-2. adicione `NEXT_PUBLIC_SITE_URL` com a URL HTTPS de produção;
-3. execute `npm run lint`, `npx tsc --noEmit` e `npm run build`;
-4. confira a imagem Open Graph e as rotas do sitemap;
-5. conecte o repositório à Vercel;
-6. replique a variável de ambiente no projeto da Vercel;
-7. realize o deploy somente após a URL definitiva estar decidida.
+1. Confirme URLs públicas de GitHub, LinkedIn e e-mail em `src/config/site.ts`.
+2. Defina `NEXT_PUBLIC_SITE_URL` com a origem HTTPS definitiva, sem caminho e
+   sem barra final.
+3. Configure `RESEND_API_KEY`, `CONTACT_TO_EMAIL` e `CONTACT_FROM_EMAIL`
+   nas variáveis de ambiente da Vercel.
+4. Use remetente ou domínio verificado na Resend.
+5. Configure rate limiting para `POST /api/contact`.
+6. Execute `npm run lint`, `npx tsc --noEmit` e `npm run build`.
+7. Verifique sitemap, robots, metadata e imagem Open Graph após a publicação.
 
-Não há necessidade atual de `vercel.json`. Nenhum deploy é realizado por estas
-instruções.
+Não há necessidade de `vercel.json` para a configuração atual.
 
-## Dados pendentes antes da publicação
+## Documentação
 
-- URL HTTPS definitiva ou domínio;
-- imagens reais dos projetos, opcionais;
-- URLs ausentes de repositório ou demonstração, quando existirem.
+| Documento | Finalidade |
+| --- | --- |
+| [Project Blueprint](docs/project-blueprint.md) | Referência fundacional e histórica do projeto. |
+| [Hero V2](docs/portfolio-v2-hero.md) | Especificação atual do Hero. |
+| [Projetos V2](docs/portfolio-v2-projects-specification.md) | Especificação canônica de cards e estudos de caso. |
+| [Decisões técnicas](docs/decisions.md) | Decisões arquiteturais que orientam a manutenção. |
+| [Estado do projeto](docs/tasks.md) | Funcionalidades concluídas e próximos passos. |
+| [Auditoria do repositório](docs/repository-audit.md) | Diagnóstico e acompanhamento da limpeza do repositório. |
+| [Changelog](CHANGELOG.md) | Histórico oficial de mudanças. |
 
-GitHub, LinkedIn e e-mail profissional já possuem valores configurados, mas
-devem ser conferidos pelo responsável antes da publicação.
+## Contato
+
+Os canais públicos de contato são centralizados em `src/config/site.ts` e
+renderizados no portfólio. Para propor melhorias no código, abra uma issue ou
+pull request no repositório correspondente.

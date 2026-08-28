@@ -1,5 +1,16 @@
 # Project Blueprint — Portfólio Brayan Favarin
 
+> **Status: referência fundacional e histórica.** Este documento preserva a
+> visão, identidade visual, convenções e fases originais do portfólio. Para a
+> implementação atual, consulte o [README](../README.md), a
+> [especificação de Projetos V2](portfolio-v2-projects-specification.md), a
+> [especificação do Hero V2](portfolio-v2-hero.md), as
+> [decisões técnicas](decisions.md) e o [estado atual](tasks.md).
+>
+> Alguns exemplos de copy, nomes de projeto, status e instruções de fases abaixo
+> foram superados pela evolução do produto. Eles não devem ser usados como fonte
+> de configuração ou conteúdo atual.
+
 ## 1. Visão do projeto
 
 Criar um portfólio pessoal moderno, profissional, responsivo e preparado para crescer ao longo do tempo.

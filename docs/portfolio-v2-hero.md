@@ -1,258 +1,118 @@
-# Portfolio v2 — Hero
+# Portfolio V2 — Hero
+
+**Status:** especificação atual do Hero.
+**Atualizada em:** 2026-08-28.
 
 ## Objetivo
 
-O Hero representa a primeira impressão do portfólio.
+O Hero é a primeira impressão do portfólio. Ele deve comunicar com clareza quem
+é Brayan Favarin, seu cargo, como desenvolve software, suas principais ações e
+disponibilidade profissional.
 
-Seu objetivo é comunicar imediatamente quem sou, qual é minha área de atuação e como desenvolvo software.
+A composição deve transmitir organização, confiança e maturidade técnica sem
+efeitos excessivos. A clareza da mensagem é mais importante que a quantidade de
+elementos visuais.
 
-O Hero deve transmitir profissionalismo, organização e confiança sem utilizar excesso de elementos visuais.
+## Hierarquia de conteúdo
 
-A experiência deve ser limpa, moderna e memorável.
+A leitura ocorre nesta ordem:
 
----
+1. Brayan Favarin;
+2. Desenvolvedor Full Stack;
+3. proposta profissional;
+4. mensagem dinâmica;
+5. ações principais;
+6. disponibilidade;
+7. painel técnico ou foto opcional.
 
-# Filosofia
+O nome é o elemento textual de maior destaque e nunca participa da animação. O
+cargo permanece fixo.
 
-O Hero não deve impressionar por efeitos.
+## Proposta profissional
 
-Ele deve impressionar pela clareza.
+A proposta atual comunica a construção de aplicações completas, organizadas e
+preparadas para produção. Ela deve permanecer curta, profissional e alinhada ao
+trabalho que une arquitetura, backend, frontend e qualidade.
 
-O visitante deve compreender em poucos segundos:
+## Mensagem dinâmica
 
-- quem sou;
-- o que faço;
-- como trabalho;
-- quais ações pode realizar.
+A animação ocorre somente nesta área e comunica o processo de desenvolvimento.
+As frases são exibidas continuamente nesta ordem:
 
----
+1. Planejando soluções.
+2. Projetando arquitetura.
+3. Desenvolvendo aplicações.
+4. Preparando para produção.
 
-# Estrutura
+### Comportamento
 
-O Hero deverá conter:
+Cada frase é digitada caractere a caractere, permanece legível por cerca de dois
+segundos e é apagada antes da próxima. A implementação atual usa:
 
-Nome
+- digitação em aproximadamente 58 ms por caractere;
+- pausa de 2 s;
+- remoção em aproximadamente 36 ms por caractere;
+- cursor vertical com piscar discreto.
 
-↓
+O cursor acompanha a mensagem, continua visível durante a pausa e não adiciona
+movimento a outras áreas do Hero. Não usar bounce, zoom, rotação, partículas,
+efeitos 3D ou animações de layout contínuas.
 
-Cargo
+Com preferência por redução de movimento, ou sem JavaScript, a mensagem
+Planejando soluções. permanece estática e compreensível.
 
-↓
+## Ações e disponibilidade
 
-Mensagem dinâmica
+As ações principais são:
 
-↓
+- Ver projetos;
+- Baixar currículo, somente quando o currículo estiver habilitado na
+  configuração.
 
-Breve descrição
+A disponibilidade para oportunidades permanece visível, mas secundária à
+hierarquia de nome, cargo e proposta. Todos os controles devem ter foco visível
+e funcionar por teclado.
 
-↓
+## Foto opcional e painel técnico
 
-Botões principais
+A foto é controlada por configuração centralizada:
 
-↓
+- quando desabilitada, o Hero renderiza o painel técnico e não reserva espaço
+  vazio;
+- quando habilitada, a foto é carregada com Next/Image, com alt configurado e
+  sem superar o conteúdo textual;
+- o painel técnico representa planejamento, arquitetura, desenvolvimento e
+  qualidade, preservando a identidade dark editorial.
 
-Elemento visual (foto quando existir)
+Não criar foto fictícia. A futura imagem deve ser incluída em
+public/images/profile/ e habilitada somente quando estiver pronta.
 
----
+## Responsividade
 
-# Nome
+- **Desktop:** conteúdo textual e painel/foto formam duas colunas equilibradas.
+- **Tablet:** a composição reduz proporcionalmente, sem comprimir ações.
+- **Mobile:** conteúdo textual vem primeiro; ações podem quebrar em linhas e o
+  painel/foto fica abaixo, sem espaço vazio.
 
-O nome deverá possuir maior destaque visual do Hero.
+Nenhum breakpoint deve introduzir scroll horizontal, texto cortado ou área
+reservada para uma foto desabilitada.
 
-Texto oficial:
+## Acessibilidade e performance
 
-Brayan Favarin
+- A mensagem dinâmica não contém informação exclusiva da animação.
+- Preferência por redução de movimento é respeitada.
+- O conteúdo essencial é legível sem JavaScript.
+- Foto futura utiliza alt descritivo e Next/Image.
+- A animação fica isolada em um componente cliente pequeno, evitando hidratação
+  desnecessária do restante do Hero.
 
-O nome nunca deverá fazer parte da animação.
+## Critérios de manutenção
 
-Ele deverá permanecer fixo.
+Ao alterar o Hero, confirme que:
 
----
-
-# Cargo
-
-Texto principal:
-
-Desenvolvedor Full Stack
-
-Também permanecerá fixo.
-
-Não deverá alternar.
-
----
-
-# Mensagem Dinâmica
-
-A animação deverá ocorrer apenas nesta área.
-
-O objetivo não é demonstrar tecnologias.
-
-O objetivo é comunicar minha forma de desenvolver software.
-
-Mensagens sugeridas:
-
-Planejando arquitetura.
-
-Projetando soluções.
-
-Desenvolvendo aplicações.
-
-Preparando para produção.
-
-Entregando software de qualidade.
-
-As transições deverão utilizar fade suave.
-
-Não utilizar efeito de digitação contínuo.
-
-Não utilizar animações exageradas.
-
-A troca deverá ocorrer naturalmente.
-
----
-
-# Descrição
-
-A descrição deverá complementar o cargo.
-
-Exemplo de direção:
-
-"Desenvolvo aplicações completas, unindo arquitetura, backend, frontend e boas práticas para entregar software preparado para produção."
-
-O texto deverá permanecer curto.
-
----
-
-# Botões
-
-Manter dois botões principais.
-
-Ver Projetos
-
-Baixar Currículo
-
-Os botões deverão permanecer em destaque.
-
----
-
-# Foto
-
-A foto deverá ser opcional.
-
-Enquanto não existir foto profissional:
-
-O Hero não deverá reservar espaço vazio.
-
-O layout deverá expandir automaticamente.
-
-Quando existir:
-
-A foto deverá aparecer integrada ao Hero.
-
-Nunca deverá competir com o conteúdo textual.
-
----
-
-# Configuração
-
-A foto deverá ser controlada por configuração.
-
-Exemplo:
-
-enabled: false
-
-Quando uma foto profissional estiver disponível:
-
-enabled: true
-
-Nenhuma alteração estrutural deverá ser necessária.
-
----
-
-# Elemento Visual
-
-Na ausência da foto, manter o elemento visual atual ou outro componente compatível com a identidade do portfólio.
-
-Quando a foto estiver habilitada, o componente visual deverá adaptar-se automaticamente.
-
----
-
-# Responsividade
-
-Desktop
-
-Nome e descrição à esquerda.
-
-Foto ou elemento visual à direita.
-
-Tablet
-
-Redução proporcional.
-
-Mobile
-
-Conteúdo empilhado.
-
-A foto deverá mover-se naturalmente para baixo quando habilitada.
-
-Nenhum espaço vazio poderá permanecer.
-
----
-
-# Acessibilidade
-
-Toda animação deverá respeitar usuários com preferência por redução de movimento.
-
-Os textos deverão permanecer totalmente legíveis.
-
-Nenhuma informação poderá depender exclusivamente da animação.
-
----
-
-# Performance
-
-A animação deverá possuir baixo impacto.
-
-A foto deverá utilizar Next/Image.
-
-Lazy Loading quando apropriado.
-
-Boa otimização.
-
----
-
-# Critérios de Aceitação
-
-O Hero será considerado concluído quando:
-
-✓ O nome possuir maior destaque.
-
-✓ O cargo permanecer fixo.
-
-✓ A animação comunicar o processo de desenvolvimento.
-
-✓ A descrição estiver mais alinhada ao perfil profissional.
-
-✓ Os botões permanecerem claros.
-
-✓ O Hero funcionar perfeitamente com ou sem foto.
-
-✓ Desktop, tablet e mobile permanecerem consistentes.
-
-✓ Lighthouse não sofrer regressão.
-
-✓ npm run lint aprovado.
-
-✓ npx tsc --noEmit aprovado.
-
-✓ npm run build aprovado.
-
----
-
-# Considerações Finais
-
-O Hero deverá representar minha identidade profissional.
-
-Seu foco não será demonstrar tecnologias.
-
-Seu foco será comunicar organização, arquitetura, qualidade de software e capacidade de entregar aplicações completas.
+- nome e cargo continuam fixos;
+- a mensagem dinâmica mantém ordem, ritmo e fallback estático;
+- currículo e links continuam funcionando;
+- foto desabilitada não reserva espaço;
+- foco, contraste, teclado e redução de movimento continuam preservados;
+- lint, checagem de tipos e build permanecem aprovados.

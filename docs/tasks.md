@@ -1,27 +1,42 @@
 # Estado do projeto
 
-## Atualização recente
-
-- [x] Formulário de contato com validação, Resend e canais alternativos.
-- [ ] Configurar Resend e remetente ou domínio verificado antes do envio real.
+**Atualizado em:** 2026-08-28.
 
 ## Concluído
 
-- [x] Fundação com Next.js, TypeScript, Tailwind CSS e App Router.
-- [x] Homepage com Hero, Sobre, Projetos, Experiência, Tecnologias e Contato.
-- [x] Navbar responsiva, Footer e componentes compartilhados.
-- [x] Estudos de caso de Professional Management API e Portfólio Pessoal.
+- [x] Fundação com Next.js, TypeScript, Tailwind CSS, App Router e fontes Geist.
+- [x] Homepage com Hero, Sobre, Projetos, Experiência, Tecnologias, Contato,
+  Navbar e Footer.
+- [x] Hero V2 com proposta profissional, mensagem dinâmica acessível, currículo
+  e estrutura para foto opcional.
+- [x] Projetos V2 com cards padronizados, estudos de caso dinâmicos e galeria.
+- [x] Professional Management System atualizado como case full stack com
+  capturas reais.
+- [x] Estudos de caso do Professional Management System e do Portfólio Pessoal.
+- [x] Experiência, Tecnologias, Sobre e Contato revisados com foco profissional.
+- [x] Formulário de contato com validação Zod, Resend, honeypot e canais
+  alternativos.
+- [x] Currículo integrado em /documents/brayan-favarin-cv.pdf.
 - [x] Metadata global e por projeto, sitemap, robots, ícone e imagem Open Graph.
-- [x] Revisão de acessibilidade, responsividade, performance e qualidade.
-- [x] Placeholders locais mantidos como solução visual temporária.
-- [x] E-mail profissional configurado em `src/config/site.ts`.
-- [x] Currículo integrado pelo caminho `/documents/brayan-favarin-cv.pdf`.
+- [x] Auditoria e consolidação de documentação, changelog e referências
+  internas.
+- [x] Workflow de qualidade para lint, tipos e build.
 
-## Próximos passos
+## Próximos passos antes do deploy
 
-- [ ] Configurar a URL HTTPS definitiva em `NEXT_PUBLIC_SITE_URL`.
-- [ ] Fornecer os dados completos do ListaSmart antes de criar seu estudo de caso.
-- [ ] Substituir os placeholders por imagens reais, quando disponíveis.
-- [ ] Revisar URLs de repositório e demonstração de cada projeto.
-- [ ] Realizar deploy e configurar domínio.
-- [ ] Avaliar analytics somente após definir a solução e o consentimento necessário.
+- [ ] Definir a URL HTTPS definitiva em NEXT_PUBLIC_SITE_URL.
+- [ ] Configurar RESEND_API_KEY, CONTACT_TO_EMAIL e CONTACT_FROM_EMAIL na
+  plataforma de hospedagem.
+- [ ] Verificar remetente ou domínio na Resend.
+- [ ] Adicionar rate limiting para POST /api/contact na borda ou na plataforma.
+- [ ] Executar a validação final local e conferir metadata, sitemap e links
+  depois do deploy.
+
+## Melhorias futuras
+
+- [ ] Criar testes automatizados para o schema e a Route Handler de contato.
+- [ ] Adicionar conteúdo completo do ListaSmart antes de tornar sua rota pública.
+- [ ] Substituir a arte Open Graph do case Portfólio Pessoal por capturas reais.
+- [ ] Otimizar a imagem Open Graph quando houver uma nova versão.
+- [ ] Avaliar analytics somente após definir solução e consentimento.
+- [ ] Adicionar domínio, versão em inglês e novos projetos quando aprovados.
