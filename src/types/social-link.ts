@@ -1,10 +1,9 @@
-export type SocialPlatform = "E-mail" | "LinkedIn" | "GitHub";
+export type SocialPlatform = "email" | "github" | "linkedin";
 export type SocialIcon = "mail" | "linkedin" | "github";
 
 export interface SocialLink {
-  label: SocialPlatform;
+  external: boolean;
   href?: string;
   icon: SocialIcon;
-  external: boolean;
-  ariaLabel?: string;
+  platform: SocialPlatform;
 }

@@ -11,7 +11,7 @@ interface dark editorial, responsiva e orientada a dados.
 ## Destaques
 
 - Homepage com Hero, Sobre, Projetos, Experiência, Tecnologias e Contato.
-- Estudos de caso gerados dinamicamente a partir de `src/data/projects.ts`.
+- Estudos de caso gerados dinamicamente a partir dos dicionários em `src/i18n/`.
 - Professional Management System como case principal, com frontend, backend,
   autenticação JWT, PostgreSQL, Docker e capturas reais.
 - Formulário de contato acessível com validação compartilhada, honeypot e envio
@@ -21,6 +21,8 @@ interface dark editorial, responsiva e orientada a dados.
   ícone do App Router.
 - Acessibilidade com skip link, foco visível, navegação por teclado e suporte a
   `prefers-reduced-motion`.
+- Internacionalização por rotas: português em `/` e inglês em `/en`, com
+  componentes compartilhados, conteúdo tipado e SEO por idioma.
 
 ## Projeto em destaque
 
@@ -129,8 +131,10 @@ público, implemente rate limiting na plataforma de hospedagem ou na borda.
 | Rota | Descrição |
 | --- | --- |
 | `/` | Homepage do portfólio. |
+| `/en` | Homepage em inglês. |
 | `/projetos/professional-management-api` | Estudo de caso do Professional Management System. |
 | `/projetos/portfolio-pessoal` | Estudo de caso do portfólio. |
+| `/en/projects/[slug]` | Estudos de caso em inglês. |
 | `/sitemap.xml` | Sitemap derivado dos projetos publicados. |
 | `/robots.txt` | Regras de indexação. |
 
@@ -157,8 +161,9 @@ src/
 │   ├── shared/                        # Elementos reutilizáveis
 │   ├── technologies/                  # Grupos e itens de tecnologia
 │   └── ui/                            # Botões
-├── config/                            # Configuração pública central
-├── data/                              # Conteúdo tipado
+├── config/                            # Configuração pública e paths de assets
+├── data/                              # Dados públicos sem tradução (links sociais)
+├── i18n/                              # Rotas, dicionários e dados localizados
 ├── lib/                               # Schema, metadata e utilitários
 └── types/                             # Contratos TypeScript
 docs/                                  # Decisões, especificações e auditorias
@@ -171,17 +176,17 @@ precisam de APIs do navegador são Client Components.
 
 ### Dados pessoais e SEO
 
-Atualize `src/config/site.ts` para alterar nome, cargo, localização, dados
-sociais, e-mail público, descrição SEO, URL do site, currículo e imagem Open
-Graph. Segredos nunca pertencem a esse arquivo.
+Atualize `src/config/site.ts` para alterar nome, dados sociais, e-mail público,
+URL do site, currículos, foto opcional e imagem Open Graph. Segredos nunca
+pertencem a esse arquivo.
 
-Os textos de Hero e Sobre ficam em `src/data/personal.ts`. Contato,
-experiências, tecnologias, navegação e redes sociais também possuem arquivos de
-dados próprios em `src/data/`.
+Os textos localizados, dados de projetos, experiências e tecnologias ficam em
+`src/i18n/pt-br.ts` e `src/i18n/en.ts`. A configuração de caminhos e idiomas
+fica em `src/i18n/`, preservando os mesmos componentes para ambas as versões.
 
 ### Projetos e imagens
 
-1. Adicione ou atualize o objeto tipado em `src/data/projects.ts`.
+1. Adicione ou atualize o objeto tipado nos dois dicionários de `src/i18n/`.
 2. Use um `slug` único e preencha título, conteúdo do estudo de caso, stack e
    links somente quando existirem.
 3. Adicione imagens em `public/images/projects/<slug>/`.
@@ -189,7 +194,7 @@ dados próprios em `src/data/`.
 5. Prefira WebP ou AVIF para novas imagens e mantenha proporções consistentes.
 
 Cards, metadata, navegação entre projetos, rotas estáticas e sitemap derivam do
-array de projetos. Não duplique slugs em outros arquivos.
+conteúdo localizado dos projetos. Não duplique slugs entre os idiomas.
 
 O Professional Management System já usa capturas reais. O case do Portfólio
 Pessoal usa temporariamente a arte Open Graph; substitua-a por capturas reais
@@ -198,10 +203,14 @@ quando elas estiverem disponíveis.
 ### Currículo
 
 1. Mantenha o PDF em `public/documents/brayan-favarin-cv.pdf`.
-2. Confirme `siteConfig.resume.path` como
+2. Confirme `siteConfig.resume["pt-BR"].path` como
    `/documents/brayan-favarin-cv.pdf`.
-3. Mantenha `siteConfig.resume.enabled` como `true` apenas enquanto o PDF
-   existir.
+3. Mantenha `siteConfig.resume["pt-BR"].enabled` como `true` apenas enquanto o
+   PDF existir.
+
+O currículo em inglês está disponível em
+`public/documents/brayan-favarin-cv-en.pdf`, configurado em
+`siteConfig.resume.en.path` e habilitado por `siteConfig.resume.en.enabled`.
 
 O botão **Baixar currículo** é exibido no Hero somente com a flag ativada.
 
@@ -227,6 +236,7 @@ Não há necessidade de `vercel.json` para a configuração atual.
 | --- | --- |
 | [Project Blueprint](docs/project-blueprint.md) | Referência fundacional e histórica do projeto. |
 | [Hero V2](docs/portfolio-v2-hero.md) | Especificação atual do Hero. |
+| [Internacionalização V2](docs/portfolio-v2-i18n.md) | Rotas, dicionários, SEO e manutenção dos idiomas. |
 | [Projetos V2](docs/portfolio-v2-projects-specification.md) | Especificação canônica de cards e estudos de caso. |
 | [Decisões técnicas](docs/decisions.md) | Decisões arquiteturais que orientam a manutenção. |
 | [Estado do projeto](docs/tasks.md) | Funcionalidades concluídas e próximos passos. |

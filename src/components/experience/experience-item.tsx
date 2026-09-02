@@ -1,11 +1,13 @@
 import { TechnologyTag } from "@/components/shared/technology-tag";
+import type { ExperienceCopy } from "@/i18n/types";
 import type { Experience } from "@/types/experience";
 
 interface ExperienceItemProps {
+  copy: ExperienceCopy;
   experience: Experience;
 }
 
-export function ExperienceItem({ experience }: ExperienceItemProps) {
+export function ExperienceItem({ copy, experience }: ExperienceItemProps) {
   return (
     <article className="grid min-w-0 gap-5 border-b border-border/70 pb-12 md:grid-cols-[9.5rem_minmax(0,1fr)] md:gap-8">
       <div className="md:pt-1">
@@ -13,7 +15,7 @@ export function ExperienceItem({ experience }: ExperienceItemProps) {
           {experience.period}
         </time>
         {experience.current ? (
-          <p className="mt-2 font-mono text-[0.6875rem] text-success">Atual</p>
+          <p className="mt-2 font-mono text-[0.6875rem] text-success">{copy.labels.current}</p>
         ) : null}
       </div>
 
@@ -27,7 +29,7 @@ export function ExperienceItem({ experience }: ExperienceItemProps) {
         {experience.context ? (
           <p className="mt-3 text-sm leading-6 text-foreground-secondary">
             <span className="mr-2 font-mono text-[0.6875rem] tracking-[0.12em] text-foreground-muted uppercase">
-              Contexto
+              {copy.labels.context}
             </span>
             {experience.context}
           </p>
@@ -45,7 +47,7 @@ export function ExperienceItem({ experience }: ExperienceItemProps) {
         </div>
         <div className="mt-7">
           <p className="font-mono text-[0.6875rem] tracking-[0.12em] text-foreground-secondary uppercase">
-            Competências demonstradas
+            {copy.labels.competencies}
           </p>
           <ul className="mt-3.5 grid gap-x-8 gap-y-2.5 sm:grid-cols-2">
             {experience.competencies.map((competency) => (
@@ -66,10 +68,10 @@ export function ExperienceItem({ experience }: ExperienceItemProps) {
         {experience.technologies?.length ? (
           <div className="mt-6">
             <p className="font-mono text-[0.6875rem] tracking-[0.12em] text-foreground-secondary uppercase">
-              Tecnologias
+              {copy.labels.technologies}
             </p>
             <ul
-              aria-label={`Tecnologias utilizadas em ${experience.company}`}
+              aria-label={copy.labels.technologyList.replace("{company}", experience.company)}
               className="mt-3.5 flex flex-wrap gap-2"
             >
               {experience.technologies.map((technology) => (

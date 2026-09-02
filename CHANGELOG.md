@@ -16,6 +16,14 @@ aqui em 2026-08-28.
 - Remoção de marcadores de diretório redundantes e do ponteiro `CLAUDE.md`.
 - Adição de workflow de qualidade para lint, tipos e build.
 
+### Internacionalização
+
+- Adicionado suporte por rotas para português (`/`) e inglês (`/en`).
+- Centralizado conteúdo traduzível, textos de interface, metadata e estudos de
+  caso em dicionários tipados.
+- Adicionado seletor acessível `PT | EN`, alternates/hreflang, rotas estáticas
+  em inglês e currículos localizados habilitados para português e inglês.
+
 ## [2.0.0] - 2026-08-27
 
 ### Adicionado

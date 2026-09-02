@@ -1,13 +1,15 @@
 import { ArrowDown } from "lucide-react";
 
 import { TechnologyTag } from "@/components/shared/technology-tag";
+import type { LocaleContent } from "@/i18n/types";
 import type { ProjectArchitecture as ProjectArchitectureData } from "@/types/project";
 
 interface ProjectArchitectureProps {
   architecture: ProjectArchitectureData;
+  content: LocaleContent;
 }
 
-export function ProjectArchitecture({ architecture }: ProjectArchitectureProps) {
+export function ProjectArchitecture({ architecture, content }: ProjectArchitectureProps) {
   return (
     <div>
       <ol aria-label="Fluxo principal da arquitetura" className="max-w-xl">
@@ -35,7 +37,7 @@ export function ProjectArchitecture({ architecture }: ProjectArchitectureProps) 
 
       <div className="mt-8 border-t border-border pt-6">
         <h3 className="font-mono text-[0.6875rem] tracking-[0.12em] text-foreground-muted uppercase">
-          Elementos complementares
+          {content.ui.project.architectureSupportingItems}
         </h3>
         <ul className="mt-4 flex flex-wrap gap-2">
           {architecture.supportingItems.map((item) => (

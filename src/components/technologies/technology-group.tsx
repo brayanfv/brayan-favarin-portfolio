@@ -1,12 +1,15 @@
 import { TechnologyItem } from "@/components/technologies/technology-item";
+import type { LocaleContent } from "@/i18n/types";
 import type { TechnologyGroup as TechnologyGroupData } from "@/types/technology";
 
 interface TechnologyGroupProps {
+  content: LocaleContent;
   group: TechnologyGroupData;
   index: number;
 }
 
 export function TechnologyGroup({
+  content,
   group,
   index,
 }: TechnologyGroupProps) {
@@ -36,7 +39,7 @@ export function TechnologyGroup({
           className="font-mono text-sm font-medium text-foreground"
           id={headingId}
         >
-          {group.category}
+          {group.label}
         </h3>
       </div>
 
@@ -46,7 +49,7 @@ export function TechnologyGroup({
             className="font-mono text-[0.625rem] tracking-[0.12em] text-primary-light uppercase"
             id={primaryHeadingId}
           >
-            Stack principal
+            {content.ui.technology.primary}
           </p>
           <ul
             aria-labelledby={primaryHeadingId}
@@ -54,6 +57,7 @@ export function TechnologyGroup({
           >
             {primaryTechnologies.map((technology) => (
               <TechnologyItem
+                content={content}
                 key={`${technology.category}-${technology.name}`}
                 technology={technology}
                 variant="primary"
@@ -69,7 +73,7 @@ export function TechnologyGroup({
             className="font-mono text-[0.625rem] tracking-[0.12em] text-foreground-muted uppercase"
             id={complementaryHeadingId}
           >
-            Tecnologias complementares
+            {content.ui.technology.complementary}
           </p>
           <ul
             aria-labelledby={complementaryHeadingId}
@@ -77,6 +81,7 @@ export function TechnologyGroup({
           >
             {complementaryTechnologies.map((technology) => (
               <TechnologyItem
+                content={content}
                 key={`${technology.category}-${technology.name}`}
                 technology={technology}
                 variant="complementary"

@@ -77,3 +77,11 @@ recebem marcação explícita para não competir com as fontes atuais.
 O workflow de qualidade executa lint, checagem de tipos e build em pushes e pull
 requests. Ele não realiza deploy e complementa as validações locais descritas no
 README.
+
+## Internacionalização orientada por rotas
+
+Português permanece na raiz e inglês usa o prefixo `/en`. Dicionários tipados
+em `src/i18n/` concentram conteúdo, rótulos e metadata, enquanto componentes
+visuais permanecem únicos. O idioma vem exclusivamente da URL; o seletor da
+Navbar preserva a página equivalente quando ela existe e não cria preferência
+persistente. Os currículos usam flags independentes por idioma.

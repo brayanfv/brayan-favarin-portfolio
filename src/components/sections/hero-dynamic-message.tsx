@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from "motion/react";
 import { useEffect, useState } from "react";
 
 interface HeroDynamicMessageProps {
+  fallbackMessage: string;
   messages: readonly string[];
 }
 
@@ -11,14 +12,17 @@ const typingDelay = 58;
 const pauseDuration = 2000;
 const deletingDelay = 36;
 
-export function HeroDynamicMessage({ messages }: HeroDynamicMessageProps) {
+export function HeroDynamicMessage({
+  fallbackMessage,
+  messages,
+}: HeroDynamicMessageProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [displayedLength, setDisplayedLength] = useState(0);
   const [phase, setPhase] = useState<"typing" | "pausing" | "deleting">(
     "typing",
   );
   const shouldReduceMotion = useReducedMotion();
-  const currentMessage = messages[currentIndex] ?? "Planejando soluções.";
+  const currentMessage = messages[currentIndex] ?? fallbackMessage;
   const displayedMessage = currentMessage.slice(0, displayedLength);
 
   useEffect(() => {
@@ -85,7 +89,7 @@ export function HeroDynamicMessage({ messages }: HeroDynamicMessageProps) {
   if (shouldReduceMotion || messages.length < 2) {
     return (
       <p className="min-h-8 text-lg leading-8 font-semibold text-foreground sm:text-xl">
-        Planejando soluções.
+        {fallbackMessage}
       </p>
     );
   }
@@ -95,7 +99,7 @@ export function HeroDynamicMessage({ messages }: HeroDynamicMessageProps) {
       aria-label={currentMessage}
       className="min-h-8 whitespace-nowrap text-lg leading-8 font-semibold text-foreground sm:text-xl"
     >
-      <noscript>Planejando soluções.</noscript>
+      <noscript>{fallbackMessage}</noscript>
       <span aria-hidden="true">{displayedMessage}</span>
       <motion.span
         animate={{ opacity: [1, 0, 1] }}

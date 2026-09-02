@@ -1,9 +1,9 @@
 export type TechnologyCategory =
-  | "Backend"
-  | "Frontend"
-  | "Bancos de dados"
-  | "Ferramentas e DevOps"
-  | "Práticas";
+  | "backend"
+  | "database"
+  | "frontend"
+  | "practices"
+  | "tools";
 
 export interface Technology {
   name: string;
@@ -17,4 +17,5 @@ export interface Technology {
 export interface TechnologyGroup {
   category: TechnologyCategory;
   items: readonly Technology[];
+  label: string;
 }

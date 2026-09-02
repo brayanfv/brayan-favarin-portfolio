@@ -105,7 +105,8 @@ contexto e placeholders quando uma captura real existir.
 
 Novas imagens devem ser incluídas em
 **public/images/projects/<slug>/**. Atualize **image**, **imageAlt** e, se
-aplicável, **gallery** no objeto correspondente de **src/data/projects.ts**.
+aplicável, **gallery** no objeto correspondente dos dicionários em
+**src/i18n/**.
 
 ## Professional Management System
 

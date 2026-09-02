@@ -16,7 +16,8 @@
 - [x] Experiência, Tecnologias, Sobre e Contato revisados com foco profissional.
 - [x] Formulário de contato com validação Zod, Resend, honeypot e canais
   alternativos.
-- [x] Currículo integrado em /documents/brayan-favarin-cv.pdf.
+- [x] Currículos integrados em `/documents/brayan-favarin-cv.pdf` e
+  `/documents/brayan-favarin-cv-en.pdf`.
 - [x] Metadata global e por projeto, sitemap, robots, ícone e imagem Open Graph.
 - [x] Auditoria e consolidação de documentação, changelog e referências
   internas.
@@ -39,4 +40,4 @@
 - [ ] Substituir a arte Open Graph do case Portfólio Pessoal por capturas reais.
 - [ ] Otimizar a imagem Open Graph quando houver uma nova versão.
 - [ ] Avaliar analytics somente após definir solução e consentimento.
-- [ ] Adicionar domínio, versão em inglês e novos projetos quando aprovados.
+- [ ] Adicionar domínio, novos idiomas além do inglês e novos projetos quando aprovados.

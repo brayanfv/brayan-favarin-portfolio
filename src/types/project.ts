@@ -1,15 +1,15 @@
 export type ProjectStatus =
-  | "Concluído"
-  | "Em desenvolvimento"
-  | "Em evolução"
-  | "Planejado";
+  | "completed"
+  | "in-development"
+  | "in-evolution"
+  | "planned";
 
 export type ProjectStackCategory =
-  | "Frontend"
-  | "Backend"
-  | "Banco"
-  | "Infraestrutura"
-  | "Qualidade";
+  | "backend"
+  | "database"
+  | "frontend"
+  | "infrastructure"
+  | "quality";
 
 export interface ProjectContentItem {
   title: string;

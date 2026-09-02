@@ -1,12 +1,15 @@
 import { ExperienceItem } from "@/components/experience/experience-item";
 import { AnimatedSection } from "@/components/shared/animated-section";
+import type { ExperienceCopy } from "@/i18n/types";
 import type { Experience } from "@/types/experience";
 
 interface ExperienceTimelineProps {
+  copy: ExperienceCopy;
   experiences: readonly Experience[];
 }
 
 export function ExperienceTimeline({
+  copy,
   experiences,
 }: ExperienceTimelineProps) {
   const orderedExperiences = [...experiences].sort(
@@ -16,7 +19,7 @@ export function ExperienceTimeline({
 
   return (
     <ol
-      aria-label="Linha do tempo profissional"
+      aria-label={copy.labels.timeline}
       className="relative before:absolute before:top-2 before:bottom-0 before:left-[0.3125rem] before:w-px before:bg-border"
     >
       {orderedExperiences.map((experience, index) => (
@@ -29,7 +32,7 @@ export function ExperienceTimeline({
             className="absolute top-1.5 left-0 size-2.5 rounded-full border-2 border-background-secondary bg-primary shadow-[0_0_0_4px_rgb(124_92_252/0.12)]"
           />
           <AnimatedSection delay={0.06 + index * 0.07}>
-            <ExperienceItem experience={experience} />
+            <ExperienceItem copy={copy} experience={experience} />
           </AnimatedSection>
         </li>
       ))}

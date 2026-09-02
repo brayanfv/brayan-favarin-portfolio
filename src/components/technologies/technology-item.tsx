@@ -1,12 +1,15 @@
 import { joinClassNames } from "@/lib/utils";
+import type { LocaleContent } from "@/i18n/types";
 import type { Technology } from "@/types/technology";
 
 interface TechnologyItemProps {
+  content: LocaleContent;
   technology: Technology;
   variant?: "primary" | "complementary" | "practice";
 }
 
 export function TechnologyItem({
+  content,
   technology,
   variant = "complementary",
 }: TechnologyItemProps) {
@@ -29,7 +32,7 @@ export function TechnologyItem({
             aria-hidden="true"
             className="size-1 shrink-0 rounded-full bg-primary"
           />
-          <span className="sr-only">Tecnologia principal: </span>
+          <span className="sr-only">{content.ui.technology.primaryPrefix} </span>
         </>
       ) : null}
       <div className="min-w-0">
@@ -42,7 +45,7 @@ export function TechnologyItem({
       </div>
       {isPrimary ? (
         <span className="mt-0.5 ml-auto shrink-0 text-[0.5625rem] tracking-[0.1em] text-primary-light uppercase">
-          foco
+          {content.ui.technology.focus}
         </span>
       ) : null}
     </li>

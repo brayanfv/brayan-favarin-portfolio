@@ -1,10 +1,9 @@
-import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import type { ReactNode } from "react";
 
-import { siteConfig } from "@/config/site";
-import { createMetadata } from "@/lib/metadata";
+import type { LocaleContent } from "@/i18n/types";
 
-import "./globals.css";
+import "@/app/globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,29 +17,20 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-const baseMetadata = createMetadata();
+interface SiteDocumentProps {
+  children: ReactNode;
+  content: LocaleContent;
+}
 
-export const metadata: Metadata = {
-  ...baseMetadata,
-  title: {
-    default: siteConfig.title,
-    template: `%s | ${siteConfig.name}`,
-  },
-};
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export function SiteDocument({ children, content }: SiteDocumentProps) {
   return (
-    <html lang={siteConfig.language}>
+    <html lang={content.locale}>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <a
           className="fixed top-3 left-3 z-[60] -translate-y-24 rounded-md bg-foreground px-4 py-3 font-medium text-background transition-transform focus:translate-y-0 motion-reduce:transition-none"
           href="#conteudo-principal"
         >
-          Pular para o conteúdo
+          {content.ui.skipToContent}
         </a>
         {children}
       </body>
