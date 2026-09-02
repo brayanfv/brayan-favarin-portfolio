@@ -179,7 +179,11 @@ export function Navbar({ content, locale }: NavbarProps) {
 
 function LanguageSwitcher({ content, locale, pathname }: NavbarProps & { pathname: string }) {
   return (
-    <div aria-label={content.ui.languageSwitcher.label} className="flex items-center gap-1 font-mono text-xs text-foreground-muted">
+    <div
+      aria-label={content.ui.languageSwitcher.label}
+      className="flex items-center gap-1 font-mono text-xs text-foreground-muted"
+      role="group"
+    >
       {(["pt-BR", "en"] as const).map((targetLocale, index) => (
         <span className="flex items-center gap-1" key={targetLocale}>
           {index ? <span aria-hidden="true">|</span> : null}
