@@ -117,7 +117,7 @@ realocar arquivos sem necessidade.
 | Item | Motivo da revisão |
 | --- | --- |
 | `CLAUDE.md` | Contém somente um ponteiro para `AGENTS.md`. Mantenha se o fluxo com Claude Code for intencional; caso contrário, ele é ruído pequeno na raiz. |
-| `docs/project-blueprint.md` | É valioso como visão fundacional, porém contém identidade e conteúdo V1, como o antigo Professional Management API. Deve receber marcação de referência histórica. |
+| `docs/project-blueprint.md` | É valioso como visão fundacional, porém contém identidade e conteúdo V1, incluindo uma descrição anterior centrada na API do Professional Management System. Deve receber marcação de referência histórica. |
 | `docs/portfolio-v2-projects.md` | Sobrepõe grande parte da specification. Avaliar merge na especificação canônica. |
 | `docs/portfolio-v2-hero.md` | A diretriz registrada fala em fade e rejeita typewriter, enquanto a implementação atual usa typewriter aprovado. Atualizar o documento ou identificá-lo como histórico. |
 | `docs/tasks.md` | O checklist não registra a evolução V2 recente e mistura pendências de publicação com estado concluído. |

@@ -436,7 +436,7 @@ Uma seleção de aplicações desenvolvidas para praticar arquitetura, regras de
 
 Projetos iniciais:
 
-### Professional Management API
+### Professional Management System
 
 Descrição:
 
@@ -512,7 +512,7 @@ O hover deve ser discreto:
 Cada projeto importante deve possuir uma URL própria:
 
 ```text
-/projetos/professional-management-api
+/projetos/professional-management-system
 /projetos/listasmart
 /projetos/portfolio-pessoal
 ```

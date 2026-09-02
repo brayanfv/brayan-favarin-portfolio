@@ -75,7 +75,7 @@ export const ptBrContent = {
     },
     items: [
       {
-        slug: "professional-management-api",
+        slug: "professional-management-system",
         title: "Professional Management System",
         subtitle: "Sistema full stack para gestão de profissionais e contatos",
         description:
@@ -84,7 +84,7 @@ export const ptBrContent = {
           "Sistema full stack de gestão de profissionais, com frontend, backend, autenticação JWT, persistência PostgreSQL e ambiente Docker preparado para produção.",
         mainTechnologies: ["Next.js", "Spring Boot", "PostgreSQL", "Docker"],
         status: "completed",
-        repositoryUrl: "https://github.com/brayanfv/PROFESSIONAL-MANAGEMENT-API",
+        repositoryUrl: "https://github.com/brayanfv/Professional-Management-System",
         image: "/images/projects/professional-management-system/dashboard.png",
         imageAlt:
           "Dashboard do Professional Management System com visão geral do sistema",

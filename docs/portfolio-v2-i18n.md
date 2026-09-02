@@ -17,7 +17,7 @@ sem equivalente, retorna para a homepage correspondente.
 
 Os slugs publicados são estáveis entre os idiomas para preservar URLs já
 existentes. Assim, a rota em inglês do Professional Management System é
-`/en/projects/professional-management-api`.
+`/en/projects/professional-management-system`.
 
 ## Arquitetura
 

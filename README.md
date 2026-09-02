@@ -132,7 +132,7 @@ público, implemente rate limiting na plataforma de hospedagem ou na borda.
 | --- | --- |
 | `/` | Homepage do portfólio. |
 | `/en` | Homepage em inglês. |
-| `/projetos/professional-management-api` | Estudo de caso do Professional Management System. |
+| `/projetos/professional-management-system` | Estudo de caso do Professional Management System. |
 | `/projetos/portfolio-pessoal` | Estudo de caso do portfólio. |
 | `/en/projects/[slug]` | Estudos de caso em inglês. |
 | `/sitemap.xml` | Sitemap derivado dos projetos publicados. |
