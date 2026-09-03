@@ -12,10 +12,15 @@ export function getContactFormSchema(copy: ContactFormCopy) {
     email: z.string().trim().email(copy.validation.emailInvalid).max(254, copy.validation.emailMax),
     message: z.string().trim().min(10, copy.validation.messageMin).max(2000, copy.validation.messageMax),
     website: z.string().max(120),
+    turnstileToken: z.string().trim().min(1, copy.turnstile.pending).max(2048, copy.turnstile.failed),
   });
 }
 
-export type ContactFormValues = z.infer<ReturnType<typeof getContactFormSchema>>;
+export function getContactClientSchema(copy: ContactFormCopy) {
+  return getContactFormSchema(copy).omit({ turnstileToken: true });
+}
+
+export type ContactFormValues = z.infer<ReturnType<typeof getContactClientSchema>>;
 
 export function getContactFieldErrors(error: z.ZodError): ContactFieldErrors {
   const fieldErrors: ContactFieldErrors = {};

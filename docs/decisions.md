@@ -46,6 +46,15 @@ permanece somente no servidor. Não há banco de dados nesta etapa. A validaçã
 silencioso reduz spam sem introduzir CAPTCHA. Os links de contato alternativos
 continuam visíveis caso o serviço esteja indisponível.
 
+## Turnstile complementar ao honeypot
+
+O formulário usa Cloudflare Turnstile em modo Managed sem adicionar uma
+biblioteca de terceiros. O widget fornece um token efêmero ao componente de
+formulário; a Route Handler o valida no Siteverify antes de chamar o Resend.
+O segredo permanece exclusivamente no servidor. O honeypot silencioso foi
+mantido como uma camada independente para descartar automações simples sem
+substituir a validação obrigatória do Turnstile.
+
 ## JavaScript somente onde agrega valor
 
 Navbar e reveals continuam como Client Components. Links sociais e itens de

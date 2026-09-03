@@ -14,8 +14,8 @@ interface dark editorial, responsiva e orientada a dados.
 - Estudos de caso gerados dinamicamente a partir dos dicionários em `src/i18n/`.
 - Professional Management System como case principal, com frontend, backend,
   autenticação JWT, PostgreSQL, Docker e capturas reais.
-- Formulário de contato acessível com validação compartilhada, honeypot e envio
-  server-side por Resend.
+- Formulário de contato acessível com validação compartilhada, honeypot,
+  Cloudflare Turnstile validado no servidor e envio server-side por Resend.
 - Currículo público disponível por configuração central.
 - SEO com metadata, canonical, Open Graph, Twitter Card, sitemap, robots e
   ícone do App Router.
@@ -41,6 +41,7 @@ card, Hero e galeria do estudo de caso.
 - Lucide React para ícones;
 - Geist Sans e Geist Mono;
 - Zod para validação;
+- Cloudflare Turnstile para proteção adicional contra automação;
 - Resend para envio server-side do formulário;
 - ESLint com Core Web Vitals.
 
@@ -106,25 +107,39 @@ NEXT_PUBLIC_SITE_URL=http://localhost:3000
 RESEND_API_KEY=
 CONTACT_TO_EMAIL=
 CONTACT_FROM_EMAIL=
+
+# Cloudflare Turnstile: somente a site key pode chegar ao navegador.
+NEXT_PUBLIC_TURNSTILE_SITE_KEY=
+TURNSTILE_SECRET_KEY=
 ```
 
 ### Formulário de contato e Resend
 
 O formulário envia uma requisição para `POST /api/contact`. Nome, e-mail e
-mensagem são validados no navegador e novamente no servidor. A API key não é
-exposta ao cliente; o e-mail informado pelo visitante é usado apenas como
-`replyTo`.
+mensagem são validados no navegador e novamente no servidor. O token gerado
+pelo Cloudflare Turnstile é mantido apenas durante o envio e validado no
+Siteverify antes que a rota chame o Resend. A API key e o segredo do Turnstile
+não são expostos ao cliente; o e-mail informado pelo visitante é usado apenas
+como `replyTo`.
 
 Para testar o envio real:
 
 1. Crie uma API key na [Resend](https://resend.com/api-keys).
 2. Preencha as três variáveis do Resend apenas em `.env.local`.
-3. Use em `CONTACT_FROM_EMAIL` um remetente de domínio verificado na Resend.
-4. Reinicie `npm run dev`, envie uma mensagem e confirme o recebimento.
+3. Preencha `NEXT_PUBLIC_TURNSTILE_SITE_KEY` e `TURNSTILE_SECRET_KEY` com o par
+   do widget Managed, configurado para o hostname local ou de produção.
+4. Use em `CONTACT_FROM_EMAIL` um remetente de domínio verificado na Resend.
+5. Reinicie `npm run dev`, conclua a verificação de segurança, envie uma
+   mensagem e confirme o recebimento.
 
 Sem as variáveis obrigatórias, a rota falha de maneira controlada e o visitante
-recebe uma mensagem genérica. O honeypot reduz spam básico; antes de um deploy
-público, implemente rate limiting na plataforma de hospedagem ou na borda.
+recebe uma mensagem segura. O honeypot e o Turnstile coexistem; antes de um
+deploy público, mantenha também rate limiting na plataforma de hospedagem ou na
+borda.
+
+Para testes locais sem usar as chaves de produção, use temporariamente as
+[chaves oficiais de teste da Cloudflare Turnstile](https://developers.cloudflare.com/turnstile/troubleshooting/testing/).
+Elas funcionam em `localhost` e não devem ser usadas em produção.
 
 ## Rotas
 
@@ -221,12 +236,15 @@ Nenhum deploy é executado por este repositório. Antes do primeiro deploy:
 1. Confirme URLs públicas de GitHub, LinkedIn e e-mail em `src/config/site.ts`.
 2. Defina `NEXT_PUBLIC_SITE_URL` com a origem HTTPS definitiva, sem caminho e
    sem barra final.
-3. Configure `RESEND_API_KEY`, `CONTACT_TO_EMAIL` e `CONTACT_FROM_EMAIL`
-   nas variáveis de ambiente da Vercel.
-4. Use remetente ou domínio verificado na Resend.
-5. Configure rate limiting para `POST /api/contact`.
-6. Execute `npm run lint`, `npx tsc --noEmit` e `npm run build`.
-7. Verifique sitemap, robots, metadata e imagem Open Graph após a publicação.
+3. Configure `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`,
+   `NEXT_PUBLIC_TURNSTILE_SITE_KEY` e `TURNSTILE_SECRET_KEY` nas variáveis de
+   ambiente da Vercel.
+4. No painel Turnstile, mantenha o widget em modo Managed e autorize o hostname
+   de produção.
+5. Use remetente ou domínio verificado na Resend.
+6. Configure rate limiting para `POST /api/contact`.
+7. Execute `npm run lint`, `npx tsc --noEmit` e `npm run build`.
+8. Verifique sitemap, robots, metadata e imagem Open Graph após a publicação.
 
 Não há necessidade de `vercel.json` para a configuração atual.
 

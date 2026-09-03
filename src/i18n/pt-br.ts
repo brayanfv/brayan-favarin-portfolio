@@ -307,6 +307,7 @@ export const ptBrContent = {
       fields: { name: "Nome", email: "E-mail", message: "Mensagem", website: "Website" },
       send: "Enviar mensagem",
       sending: "Enviando...",
+      turnstile: { label: "Verificação de segurança", loading: "Carregando verificação de segurança...", pending: "Conclua a verificação de segurança para enviar sua mensagem.", failed: "A verificação de segurança falhou. Tente novamente.", unavailable: "A verificação de segurança está indisponível agora. Tente novamente ou use um dos canais de contato abaixo." },
       feedback: { genericError: "Não foi possível enviar sua mensagem agora. Tente novamente ou entre em contato pelos links disponíveis.", invalidFields: "Confira os campos destacados e tente novamente.", processingError: "Não foi possível processar sua mensagem.", success: "Mensagem enviada com sucesso. Obrigado pelo contato!" },
       validation: { nameMin: "Informe um nome com pelo menos 2 caracteres.", nameMax: "O nome deve ter no máximo 80 caracteres.", emailInvalid: "Informe um endereço de e-mail válido.", emailMax: "O e-mail deve ter no máximo 254 caracteres.", messageMin: "A mensagem deve ter pelo menos 10 caracteres.", messageMax: "A mensagem deve ter no máximo 2000 caracteres." },
       email: { heading: "Nova mensagem recebida pelo portfólio", nameLabel: "Nome", emailLabel: "E-mail", messageLabel: "Mensagem", originLabel: "Origem", originValue: "Portfólio profissional", subjectPrefix: "Nova mensagem pelo portfólio" },

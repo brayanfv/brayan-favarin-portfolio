@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 
+import { TurnstileWidget } from "@/components/contact/turnstile-widget";
 import type { Locale } from "@/i18n/config";
 import type { ContactFormCopy } from "@/i18n/types";
-import { contactFields, getContactFieldErrors, getContactFormSchema, type ContactField, type ContactFieldErrors, type ContactFormValues } from "@/lib/contact-schema";
+import { contactFields, getContactClientSchema, getContactFieldErrors, type ContactField, type ContactFieldErrors, type ContactFormValues } from "@/lib/contact-schema";
 
 const initialValues: ContactFormValues = { name: "", email: "", message: "", website: "" };
 type Feedback = { message: string; type: "error" | "success" };
@@ -24,11 +25,13 @@ function readContactApiResponse(value: unknown): ContactApiResponse {
 }
 
 export function ContactForm({ copy, locale }: { copy: ContactFormCopy; locale: Locale }) {
-  const schema = useMemo(() => getContactFormSchema(copy), [copy]);
+  const schema = useMemo(() => getContactClientSchema(copy), [copy]);
   const [values, setValues] = useState<ContactFormValues>(initialValues);
   const [fieldErrors, setFieldErrors] = useState<ContactFieldErrors>({});
   const [feedback, setFeedback] = useState<Feedback | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const [turnstileResetKey, setTurnstileResetKey] = useState(0);
   const feedbackRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => { if (feedback?.type === "success") feedbackRef.current?.focus(); }, [feedback]);
@@ -54,9 +57,28 @@ export function ContactForm({ copy, locale }: { copy: ContactFormCopy; locale: L
     setFeedback(null);
   }
 
+  const handleTurnstileToken = useCallback((token: string) => {
+    setTurnstileToken(token);
+    setFeedback(null);
+  }, []);
+
+  const handleTurnstileError = useCallback(() => {
+    setTurnstileToken("");
+    setFeedback({ type: "error", message: copy.turnstile.failed });
+  }, [copy.turnstile.failed]);
+
+  function resetTurnstile() {
+    setTurnstileToken("");
+    setTurnstileResetKey((currentKey) => currentKey + 1);
+  }
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (isSubmitting) return;
+    if (!turnstileToken) {
+      setFeedback({ type: "error", message: copy.turnstile.pending });
+      return;
+    }
     const validation = schema.safeParse(values);
     if (!validation.success) {
       const nextErrors = getContactFieldErrors(validation.error);
@@ -69,28 +91,32 @@ export function ContactForm({ copy, locale }: { copy: ContactFormCopy; locale: L
     setIsSubmitting(true);
     setFeedback(null);
     try {
-      const response = await fetch("/api/contact", { body: JSON.stringify({ ...values, locale }), headers: { "Content-Type": "application/json" }, method: "POST" });
+      const response = await fetch("/api/contact", { body: JSON.stringify({ ...values, locale, turnstileToken }), headers: { "Content-Type": "application/json" }, method: "POST" });
       const payload = readContactApiResponse(await response.json().catch(() => null));
       if (!response.ok || payload.success !== true) {
         setFieldErrors(payload.fieldErrors ?? {});
         setFeedback({ type: "error", message: payload.message ?? copy.feedback.genericError });
+        resetTurnstile();
         return;
       }
       setValues(initialValues);
       setFieldErrors({});
       setFeedback({ type: "success", message: payload.message ?? copy.feedback.success });
+      resetTurnstile();
     } catch {
       setFeedback({ type: "error", message: copy.feedback.genericError });
+      resetTurnstile();
     } finally { setIsSubmitting(false); }
   }
 
   const inputClassName = "w-full rounded-md border border-border bg-background/70 px-3.5 py-3 text-base text-foreground outline-none transition-[border-color,box-shadow] placeholder:text-foreground-muted focus:border-primary focus:ring-2 focus:ring-primary/25";
-  return <form className="mt-7 space-y-5" noValidate onSubmit={handleSubmit}>
+  return <form className="mt-7 min-w-0 space-y-5" noValidate onSubmit={handleSubmit}>
     <Field error={fieldErrors.name} id="contact-name" label={copy.fields.name}><input aria-describedby={fieldErrors.name ? "contact-name-error" : undefined} aria-invalid={Boolean(fieldErrors.name)} autoComplete="name" className={inputClassName} id="contact-name" maxLength={80} name="name" onBlur={() => validateField("name")} onChange={(event) => updateValue("name", event.target.value)} required type="text" value={values.name} /></Field>
     <Field error={fieldErrors.email} id="contact-email" label={copy.fields.email}><input aria-describedby={fieldErrors.email ? "contact-email-error" : undefined} aria-invalid={Boolean(fieldErrors.email)} autoComplete="email" className={inputClassName} id="contact-email" maxLength={254} name="email" onBlur={() => validateField("email")} onChange={(event) => updateValue("email", event.target.value)} required type="email" value={values.email} /></Field>
     <Field error={fieldErrors.message} id="contact-message" label={copy.fields.message}><textarea aria-describedby={fieldErrors.message ? "contact-message-error" : undefined} aria-invalid={Boolean(fieldErrors.message)} className={`${inputClassName} min-h-36 resize-y`} id="contact-message" maxLength={2000} name="message" onBlur={() => validateField("message")} onChange={(event) => updateValue("message", event.target.value)} required value={values.message} /></Field>
+    <TurnstileWidget copy={copy.turnstile} locale={locale} onTokenChange={handleTurnstileToken} onVerificationError={handleTurnstileError} resetKey={turnstileResetKey} verified={Boolean(turnstileToken)} />
     <div aria-hidden="true" className="absolute -left-[9999px] top-auto h-px w-px overflow-hidden"><label htmlFor="contact-website">{copy.fields.website}</label><input autoComplete="off" id="contact-website" name="website" onChange={(event) => updateValue("website", event.target.value)} tabIndex={-1} type="text" value={values.website} /></div>
-    <button className="inline-flex min-h-11 w-full items-center justify-center rounded-md bg-primary px-4 py-2 font-medium text-background transition-[background-color,transform] duration-200 hover:bg-primary-light focus-visible:outline-offset-2 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70 motion-reduce:transition-none sm:w-auto" disabled={isSubmitting} type="submit">{isSubmitting ? copy.sending : copy.send}</button>
+    <button className="inline-flex min-h-11 w-full items-center justify-center rounded-md bg-primary px-4 py-2 font-medium text-background transition-[background-color,transform] duration-200 hover:bg-primary-light focus-visible:outline-offset-2 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70 motion-reduce:transition-none sm:w-auto" disabled={isSubmitting || !turnstileToken} type="submit">{isSubmitting ? copy.sending : copy.send}</button>
     {feedback ? <div aria-live="polite" className={`rounded-md border px-3.5 py-3 text-sm ${feedback.type === "success" ? "border-success/40 bg-success/10 text-foreground" : "border-error/40 bg-error/10 text-foreground"}`} ref={feedbackRef} role={feedback.type === "error" ? "alert" : "status"} tabIndex={-1}>{feedback.message}</div> : null}
   </form>;
 }

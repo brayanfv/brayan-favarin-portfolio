@@ -6,6 +6,13 @@ aqui em 2026-08-28.
 
 ## [Unreleased]
 
+### Segurança
+
+- Adicionada proteção Cloudflare Turnstile ao formulário de contato, com widget
+  Managed, token efêmero, validação obrigatória no Siteverify antes do Resend e
+  mensagens localizadas em português e inglês.
+- Mantido o honeypot existente como camada complementar de proteção.
+
 ### Documentação e repositório
 
 - Consolidação do changelog e da especificação de Projetos V2.

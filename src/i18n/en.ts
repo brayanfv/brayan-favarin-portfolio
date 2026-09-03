@@ -275,6 +275,7 @@ export const enContent = {
       fields: { name: "Name", email: "Email", message: "Message", website: "Website" },
       send: "Send message",
       sending: "Sending...",
+      turnstile: { label: "Security verification", loading: "Loading security verification...", pending: "Complete the security verification before sending your message.", failed: "Security verification failed. Please try again.", unavailable: "Security verification is temporarily unavailable. Please try again or use one of the contact channels below." },
       feedback: { genericError: "Your message could not be sent right now. Please try again or use one of the contact links below.", invalidFields: "Please review the highlighted fields and try again.", processingError: "Your message could not be processed.", success: "Message sent successfully. Thank you for getting in touch!" },
       validation: { nameMin: "Please enter a name with at least 2 characters.", nameMax: "Your name must be 80 characters or fewer.", emailInvalid: "Please enter a valid email address.", emailMax: "Your email must be 254 characters or fewer.", messageMin: "Your message must be at least 10 characters.", messageMax: "Your message must be 2000 characters or fewer." },
       email: { heading: "New message from the portfolio", nameLabel: "Name", emailLabel: "Email", messageLabel: "Message", originLabel: "Origin", originValue: "Professional portfolio", subjectPrefix: "New message from the portfolio" },

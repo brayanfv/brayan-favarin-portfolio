@@ -14,8 +14,8 @@
   capturas reais.
 - [x] Estudos de caso do Professional Management System e do Portfólio Pessoal.
 - [x] Experiência, Tecnologias, Sobre e Contato revisados com foco profissional.
-- [x] Formulário de contato com validação Zod, Resend, honeypot e canais
-  alternativos.
+- [x] Formulário de contato com validação Zod, Resend, honeypot, Cloudflare
+  Turnstile validado no servidor e canais alternativos.
 - [x] Currículos integrados em `/documents/brayan-favarin-cv.pdf` e
   `/documents/brayan-favarin-cv-en.pdf`.
 - [x] Metadata global e por projeto, sitemap, robots, ícone e imagem Open Graph.
@@ -28,6 +28,8 @@
 - [ ] Definir a URL HTTPS definitiva em NEXT_PUBLIC_SITE_URL.
 - [ ] Configurar RESEND_API_KEY, CONTACT_TO_EMAIL e CONTACT_FROM_EMAIL na
   plataforma de hospedagem.
+- [ ] Configurar NEXT_PUBLIC_TURNSTILE_SITE_KEY e TURNSTILE_SECRET_KEY na
+  plataforma de hospedagem e autorizar o hostname de produção no Turnstile.
 - [ ] Verificar remetente ou domínio na Resend.
 - [ ] Adicionar rate limiting para POST /api/contact na borda ou na plataforma.
 - [ ] Executar a validação final local e conferir metadata, sitemap e links

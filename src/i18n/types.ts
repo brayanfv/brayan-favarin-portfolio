@@ -35,6 +35,13 @@ export interface ContactFormCopy {
   };
   send: string;
   sending: string;
+  turnstile: {
+    failed: string;
+    label: string;
+    loading: string;
+    pending: string;
+    unavailable: string;
+  };
   validation: {
     emailInvalid: string;
     emailMax: string;
