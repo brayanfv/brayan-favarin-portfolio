@@ -14,6 +14,8 @@ interface dark editorial, responsiva e orientada a dados.
 - Estudos de caso gerados dinamicamente a partir dos dicionários em `src/i18n/`.
 - Professional Management System como case principal, com frontend, backend,
   autenticação JWT, PostgreSQL, Docker e capturas reais.
+- Finora como estudo de caso full stack de gestão financeira, com Laravel,
+  React, PostgreSQL, Redis, processamento assíncrono e capturas reais.
 - Formulário de contato acessível com validação compartilhada, honeypot,
   Cloudflare Turnstile validado no servidor e envio server-side por Resend.
 - Currículo público disponível por configuração central.
@@ -148,7 +150,9 @@ Elas funcionam em `localhost` e não devem ser usadas em produção.
 | `/` | Homepage do portfólio. |
 | `/en` | Homepage em inglês. |
 | `/projetos/professional-management-system` | Estudo de caso do Professional Management System. |
+| `/projetos/finora` | Estudo de caso do Finora. |
 | `/projetos/portfolio-pessoal` | Estudo de caso do portfólio. |
+| `/en/projects/finora` | Estudo de caso do Finora em inglês. |
 | `/en/projects/[slug]` | Estudos de caso em inglês. |
 | `/sitemap.xml` | Sitemap derivado dos projetos publicados. |
 | `/robots.txt` | Regras de indexação. |
@@ -211,9 +215,9 @@ fica em `src/i18n/`, preservando os mesmos componentes para ambas as versões.
 Cards, metadata, navegação entre projetos, rotas estáticas e sitemap derivam do
 conteúdo localizado dos projetos. Não duplique slugs entre os idiomas.
 
-O Professional Management System já usa capturas reais. O case do Portfólio
-Pessoal usa temporariamente a arte Open Graph; substitua-a por capturas reais
-quando elas estiverem disponíveis.
+O Professional Management System e o Finora já usam capturas reais. O case do
+Portfólio Pessoal usa temporariamente a arte Open Graph; substitua-a por
+capturas reais quando elas estiverem disponíveis.
 
 ### Currículo
 

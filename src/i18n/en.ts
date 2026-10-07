@@ -1,7 +1,8 @@
 import { ptBrContent } from "@/i18n/pt-br";
 import type { LocaleContent } from "@/i18n/types";
 
-const [professionalManagement, personalPortfolio] = ptBrContent.projects.items;
+const [professionalManagement, finora, personalPortfolio] =
+  ptBrContent.projects.items;
 const [mohawkExperience, simplesDentalExperience] = ptBrContent.experiences.items;
 const [backend, frontend, database, tools, practices] = ptBrContent.technologies.groups;
 
@@ -156,6 +157,266 @@ export const enContent = {
           description:
             "The result is a complete full stack system for professional management, with frontend, backend, authentication, persistence, and a Docker environment ready for maintenance and production.",
           highlights: ["Frontend integrated with the backend", "Relational persistence with PostgreSQL", "Authentication and data management flows", "Docker environment ready for evolution and production"],
+        },
+      },
+      {
+        ...finora,
+        subtitle: "Full stack financial management system",
+        description:
+          "A financial management platform for accounts payable and receivable, contacts, and operational indicators, with asynchronous processing, automation, and a Docker-based environment.",
+        shortDescription:
+          "A full stack financial management system built with Laravel, React, PostgreSQL, and Redis, featuring queues, automation, reporting, and automated tests.",
+        category: "Full stack system",
+        roleSummary: "Full stack architecture and development",
+        imageAlt:
+          "Finora dashboard with financial indicators, pending items, and upcoming transactions",
+        overview: {
+          description:
+            "Finora is a full stack financial management application built to organize accounts payable and receivable, contacts, due dates, settlements, and financial closing workflows through an integrated frontend, backend, database, and asynchronous processing experience.",
+          objective:
+            "Build a reliable, well-structured financial solution for recording transactions, tracking due dates, consolidating indicators, and automating work that should not block application requests.",
+          context:
+            "The project was structured as a complete application with a React frontend, Laravel API, PostgreSQL persistence, Redis for queues and locks, Sanctum authentication, and a reproducible Docker environment.",
+        },
+        demonstrates: [
+          {
+            title: "Full stack architecture",
+            description:
+              "A clear separation between the frontend, API, database, and infrastructure keeps responsibilities well defined.",
+          },
+          {
+            title: "Asynchronous processing",
+            description:
+              "Jobs and queues handle work such as reminders and financial closings without blocking HTTP requests.",
+          },
+          {
+            title: "Task automation",
+            description:
+              "A scheduler identifies eligible transactions, dispatches reminders, and reconciles interrupted financial processes.",
+          },
+          {
+            title: "Consistency and idempotency",
+            description:
+              "Safeguards reduce duplicate reminders, closings, retries, and concurrent executions.",
+          },
+          {
+            title: "Persistence and infrastructure",
+            description:
+              "PostgreSQL is the primary data source, while Redis supports queues, caching, and synchronization mechanisms.",
+          },
+          {
+            title: "Automated quality",
+            description:
+              "Core flows are covered by automated tests, linting, and build validation.",
+          },
+        ],
+        roles: [
+          {
+            title: "Solution architecture",
+            description:
+              "Defined the integration between React, Laravel, PostgreSQL, Redis, and supporting services.",
+          },
+          {
+            title: "Frontend",
+            description:
+              "Built the authentication, dashboard, contacts, transactions, and period overview screens.",
+          },
+          {
+            title: "Backend and business rules",
+            description:
+              "Implemented APIs, authentication, validation, settlements, filters, Jobs, the Scheduler, and financial workflows.",
+          },
+          {
+            title: "Infrastructure and quality",
+            description:
+              "Configured Docker Compose, queues, Redis, Mailpit, automated tests, and validation of the primary flows.",
+          },
+        ],
+        features: [
+          {
+            title: "User authentication",
+            description:
+              "Protected SPA access using Laravel Sanctum, session authentication, and CSRF protection.",
+          },
+          {
+            title: "Contact management",
+            description:
+              "Create, update, and delete contacts used in financial transactions.",
+          },
+          {
+            title: "Accounts payable and receivable",
+            description:
+              "Create and track transactions with amounts, due dates, type, linked contacts, and status.",
+          },
+          {
+            title: "Transaction settlement",
+            description:
+              "Record payments and receipts while preserving the financial history.",
+          },
+          {
+            title: "Dashboard and period overview",
+            description:
+              "Monitor indicators, upcoming due dates, and consolidated financial data by date range.",
+          },
+          {
+            title: "Reminders and financial closing",
+            description:
+              "Process alerts and financial closings asynchronously, including CSV generation and email delivery.",
+          },
+        ],
+        gallery: [
+          {
+            ...finora.gallery[0],
+            alt: "Finora dashboard with receivables, payables, pending items, and upcoming transactions",
+            title: "Financial dashboard",
+            description:
+              "A consolidated view of receivables, payables, pending items, and upcoming transactions.",
+            objective:
+              "Demonstrates how the system organizes financial indicators and due dates in a single operational view.",
+          },
+          {
+            ...finora.gallery[1],
+            alt: "Finora transactions screen with payable and receivable records, statuses, due dates, and linked contacts",
+            title: "Transaction management",
+            description:
+              "A screen for creating, viewing, updating, settling, and deleting accounts payable and receivable.",
+            objective:
+              "Demonstrates the core financial management flow, including statuses, amounts, due dates, and linked contacts.",
+          },
+          {
+            ...finora.gallery[2],
+            alt: "Finora period overview with date filters and consolidated open, settled, and overdue totals",
+            title: "Period overview",
+            description:
+              "Financial reporting by date range, with totals for open, settled, and overdue accounts.",
+            objective:
+              "Demonstrates date filtering, value consolidation, and the financial closing workflow for a selected period.",
+          },
+          {
+            ...finora.gallery[3],
+            alt: "Finora contacts screen for maintaining customers and suppliers",
+            title: "Contact management",
+            description:
+              "Create and maintain the contacts used in financial transactions.",
+            objective:
+              "Demonstrates how customers and suppliers related to the system's transactions are organized.",
+          },
+          {
+            ...finora.gallery[4],
+            alt: "Finora authentication screen with email and password fields",
+            title: "Authentication",
+            description:
+              "An application access flow protected by authentication.",
+            objective:
+              "Demonstrates secure entry into the SPA before financial resources become available.",
+          },
+        ],
+        architecture: {
+          layers: [
+            {
+              name: "React",
+              description: "The system's interface, navigation, and user experience.",
+            },
+            {
+              name: "Laravel",
+              description:
+                "REST API, authentication, business rules, Jobs, the Scheduler, and data integration.",
+            },
+            {
+              name: "PostgreSQL",
+              description:
+                "Relational persistence for users, contacts, transactions, and financial closings.",
+            },
+          ],
+          supportingItems: [
+            "Redis",
+            "Laravel Sanctum",
+            "Queues",
+            "Scheduler",
+            "Mailpit",
+            "Docker",
+          ],
+        },
+        stack: [
+          {
+            category: "frontend",
+            technologies: ["React", "TypeScript", "Vite", "Axios"],
+          },
+          {
+            category: "backend",
+            technologies: ["PHP", "Laravel", "Laravel Sanctum", "REST API"],
+          },
+          {
+            category: "database",
+            technologies: ["PostgreSQL", "SQLite for testing"],
+          },
+          {
+            category: "infrastructure",
+            technologies: [
+              "Docker",
+              "Docker Compose",
+              "Redis",
+              "Laravel Queues",
+              "Laravel Scheduler",
+              "Mailpit",
+            ],
+          },
+          {
+            category: "quality",
+            technologies: [
+              "PHPUnit",
+              "Laravel Pint",
+              "Oxlint",
+              "TypeScript",
+              "Integration tests",
+            ],
+          },
+        ],
+        decisions: [
+          {
+            title: "Asynchronous processing with queues",
+            description:
+              "Potentially time-consuming operations are queued so they do not block HTTP requests.",
+          },
+          {
+            title: "PostgreSQL as the source of truth",
+            description:
+              "Financial process state remains persisted in the database, while Redis serves as supporting infrastructure.",
+          },
+          {
+            title: "Overdue as derived state",
+            description:
+              "An account is considered overdue based on its pending status and due date, avoiding unnecessary state duplication.",
+          },
+          {
+            title: "Idempotency and retries",
+            description:
+              "Jobs and persistent records help prevent duplicate processing and support recovery from temporary failures.",
+          },
+          {
+            title: "Docker as the official environment",
+            description:
+              "Application services run reproducibly through Docker Compose.",
+          },
+        ],
+        learnings: [
+          "Building a full stack financial application with decoupled frontend and backend layers.",
+          "Using queues, Jobs, the Scheduler, and Redis in real asynchronous processing flows.",
+          "Applying idempotency, retries, and reconciliation to financial processes.",
+          "Integrating SPA authentication, PostgreSQL, Redis, email, and Docker infrastructure.",
+          "Creating automated tests for critical business workflows.",
+        ],
+        result: {
+          description:
+            "The result is a functional, tested full stack financial application with authentication, contact management, accounts payable and receivable, settlements, indicators, automation, and asynchronous processing in a reproducible Docker environment.",
+          highlights: [
+            "React frontend integrated with the Laravel API",
+            "Relational persistence with PostgreSQL",
+            "Redis, queues, and the Scheduler for automation",
+            "Financial closings with CSV generation and email delivery",
+            "66 automated tests with 232 assertions",
+            "Reproducible Docker environment",
+          ],
         },
       },
       {

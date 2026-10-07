@@ -6,6 +6,13 @@ aqui em 2026-08-28.
 
 ## [Unreleased]
 
+### Projetos
+
+- Adicionado o Finora como segundo estudo de caso publicado, com conteúdo em
+  português e inglês, capturas reais, arquitetura, stack técnica, decisões,
+  aprendizados, resultado e navegação integrada entre projetos.
+- Corrigido o repositório público do estudo de caso Portfólio Pessoal.
+
 ### Segurança
 
 - Adicionada proteção Cloudflare Turnstile ao formulário de contato, com widget

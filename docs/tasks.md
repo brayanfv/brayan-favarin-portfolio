@@ -1,6 +1,6 @@
 # Estado do projeto
 
-**Atualizado em:** 2026-08-28.
+**Atualizado em:** 2026-10-07.
 
 ## Concluído
 
@@ -12,7 +12,10 @@
 - [x] Projetos V2 com cards padronizados, estudos de caso dinâmicos e galeria.
 - [x] Professional Management System atualizado como case full stack com
   capturas reais.
-- [x] Estudos de caso do Professional Management System e do Portfólio Pessoal.
+- [x] Estudos de caso do Professional Management System, Finora e Portfólio
+  Pessoal.
+- [x] Finora publicado como case full stack de gestão financeira, com galeria de
+  capturas reais, arquitetura, stack, decisões e conteúdo em português e inglês.
 - [x] Experiência, Tecnologias, Sobre e Contato revisados com foco profissional.
 - [x] Formulário de contato com validação Zod, Resend, honeypot, Cloudflare
   Turnstile validado no servidor e canais alternativos.

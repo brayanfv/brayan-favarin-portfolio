@@ -201,6 +201,273 @@ export const ptBrContent = {
         },
       },
       {
+        slug: "finora",
+        title: "Finora",
+        subtitle: "Sistema full stack para gestão financeira",
+        description:
+          "Plataforma de gestão financeira para controle de contas a pagar e receber, contatos e indicadores, com processamento assíncrono, automações e ambiente Docker.",
+        shortDescription:
+          "Sistema full stack de gestão financeira com Laravel, React, PostgreSQL e Redis, incluindo filas, automações, relatórios e testes automatizados.",
+        mainTechnologies: ["Laravel", "React", "PostgreSQL", "Redis"],
+        status: "completed",
+        repositoryUrl: "https://github.com/brayanfv/finora",
+        image: "/images/projects/finora/dashboardFinora.png",
+        imageAlt:
+          "Dashboard do Finora com indicadores financeiros, pendências e próximos lançamentos",
+        year: "2026",
+        category: "Sistema full stack",
+        roleSummary: "Arquitetura e desenvolvimento full stack",
+        overview: {
+          description:
+            "O Finora é uma aplicação full stack de gestão financeira desenvolvida para organizar contas a pagar e receber, contatos, vencimentos, liquidações e fechamentos financeiros em uma experiência integrada entre frontend, backend, banco de dados e processamento assíncrono.",
+          objective:
+            "Construir uma solução financeira organizada e confiável para registrar movimentações, acompanhar vencimentos, consolidar indicadores e automatizar tarefas que não devem bloquear as requisições da aplicação.",
+          context:
+            "O projeto foi estruturado como uma aplicação completa, com frontend em React, API em Laravel, persistência PostgreSQL, Redis para filas e locks, autenticação com Sanctum e ambiente Docker reproduzível.",
+        },
+        demonstrates: [
+          {
+            title: "Arquitetura full stack",
+            description:
+              "Separação clara entre frontend, API, banco de dados e infraestrutura para manter responsabilidades bem definidas.",
+          },
+          {
+            title: "Processamento assíncrono",
+            description:
+              "Uso de Jobs e filas para executar tarefas como lembretes e fechamentos financeiros sem bloquear as requisições HTTP.",
+          },
+          {
+            title: "Automação de tarefas",
+            description:
+              "Scheduler responsável por identificar lançamentos elegíveis, disparar lembretes e reconciliar processos financeiros interrompidos.",
+          },
+          {
+            title: "Consistência e idempotência",
+            description:
+              "Proteções para reduzir duplicidade em lembretes, fechamentos, retries e execuções concorrentes.",
+          },
+          {
+            title: "Persistência e infraestrutura",
+            description:
+              "PostgreSQL como fonte principal de dados e Redis apoiando filas, cache e mecanismos de sincronização.",
+          },
+          {
+            title: "Qualidade automatizada",
+            description:
+              "Cobertura dos fluxos principais com testes automatizados, lint e validações de build.",
+          },
+        ],
+        roles: [
+          {
+            title: "Arquitetura da solução",
+            description:
+              "Definição da integração entre React, Laravel, PostgreSQL, Redis e os serviços auxiliares.",
+          },
+          {
+            title: "Frontend",
+            description:
+              "Construção das telas de autenticação, dashboard, contatos, lançamentos e visão financeira por período.",
+          },
+          {
+            title: "Backend e regras de negócio",
+            description:
+              "Implementação das APIs, autenticação, validações, liquidações, filtros, Jobs, Scheduler e fluxos financeiros.",
+          },
+          {
+            title: "Infraestrutura e qualidade",
+            description:
+              "Configuração de Docker Compose, filas, Redis, Mailpit, testes automatizados e validação dos principais fluxos.",
+          },
+        ],
+        features: [
+          {
+            title: "Autenticação de usuários",
+            description:
+              "Acesso protegido à SPA utilizando Laravel Sanctum, sessão e proteção CSRF.",
+          },
+          {
+            title: "Gestão de contatos",
+            description:
+              "Cadastro, edição e exclusão de contatos utilizados nas movimentações financeiras.",
+          },
+          {
+            title: "Contas a pagar e receber",
+            description:
+              "Criação e acompanhamento de lançamentos com valores, vencimentos, tipo, contato e situação.",
+          },
+          {
+            title: "Liquidação de lançamentos",
+            description:
+              "Fluxo para registrar pagamentos e recebimentos preservando o histórico financeiro.",
+          },
+          {
+            title: "Dashboard e visão por período",
+            description:
+              "Indicadores, próximos vencimentos e consolidação financeira por intervalo de datas.",
+          },
+          {
+            title: "Lembretes e fechamento financeiro",
+            description:
+              "Processamento assíncrono de alertas e fechamentos, com geração de CSV e envio por e-mail.",
+          },
+        ],
+        gallery: [
+          {
+            src: "/images/projects/finora/dashboardFinora.png",
+            alt: "Dashboard do Finora com valores a receber, valores a pagar, pendências e próximos lançamentos",
+            title: "Dashboard financeiro",
+            description:
+              "Visão consolidada com valores a receber, valores a pagar, pendências e próximos lançamentos.",
+            objective:
+              "Demonstrar como o sistema organiza indicadores financeiros e vencimentos em uma visão operacional única.",
+          },
+          {
+            src: "/images/projects/finora/transactionsFinora.png",
+            alt: "Tela de lançamentos do Finora com contas a pagar e receber, status, vencimentos e contatos vinculados",
+            title: "Gestão de lançamentos",
+            description:
+              "Tela para cadastrar, consultar, editar, liquidar e excluir contas a pagar e receber.",
+            objective:
+              "Demonstrar o fluxo principal de gestão financeira, incluindo status, valores, vencimentos e vínculos com contatos.",
+          },
+          {
+            src: "/images/projects/finora/period-overviewFinora.png",
+            alt: "Visão financeira por período do Finora com filtros de data e totais consolidados",
+            title: "Visão do período",
+            description:
+              "Consulta financeira por intervalo de datas, com totais de contas abertas, liquidadas e vencidas.",
+            objective:
+              "Demonstrar filtros temporais, consolidação de valores e o fluxo de fechamento financeiro do período.",
+          },
+          {
+            src: "/images/projects/finora/contactsFinora.png",
+            alt: "Tela de contatos do Finora com cadastro de clientes e fornecedores",
+            title: "Gestão de contatos",
+            description:
+              "Cadastro e manutenção dos contatos utilizados nos lançamentos financeiros.",
+            objective:
+              "Demonstrar a organização de clientes e fornecedores relacionados às movimentações do sistema.",
+          },
+          {
+            src: "/images/projects/finora/loginFinora.png",
+            alt: "Tela de autenticação do Finora com campos de e-mail e senha",
+            title: "Autenticação",
+            description:
+              "Fluxo de acesso à aplicação utilizando autenticação protegida.",
+            objective:
+              "Demonstrar a entrada segura na SPA antes do acesso aos recursos financeiros.",
+          },
+        ],
+        architecture: {
+          layers: [
+            {
+              name: "React",
+              description:
+                "Interface, navegação e experiência de uso do sistema.",
+            },
+            {
+              name: "Laravel",
+              description:
+                "API REST, autenticação, regras de negócio, Jobs, Scheduler e integração com dados.",
+            },
+            {
+              name: "PostgreSQL",
+              description:
+                "Persistência relacional de usuários, contatos, lançamentos e fechamentos.",
+            },
+          ],
+          supportingItems: [
+            "Redis",
+            "Laravel Sanctum",
+            "Queues",
+            "Scheduler",
+            "Mailpit",
+            "Docker",
+          ],
+        },
+        stack: [
+          {
+            category: "frontend",
+            technologies: ["React", "TypeScript", "Vite", "Axios"],
+          },
+          {
+            category: "backend",
+            technologies: ["PHP", "Laravel", "Laravel Sanctum", "API REST"],
+          },
+          {
+            category: "database",
+            technologies: ["PostgreSQL", "SQLite para testes"],
+          },
+          {
+            category: "infrastructure",
+            technologies: [
+              "Docker",
+              "Docker Compose",
+              "Redis",
+              "Laravel Queues",
+              "Laravel Scheduler",
+              "Mailpit",
+            ],
+          },
+          {
+            category: "quality",
+            technologies: [
+              "PHPUnit",
+              "Laravel Pint",
+              "Oxlint",
+              "TypeScript",
+              "Testes de integração",
+            ],
+          },
+        ],
+        decisions: [
+          {
+            title: "Processamento assíncrono com filas",
+            description:
+              "Operações potencialmente demoradas são enviadas para filas para não bloquear as requisições HTTP.",
+          },
+          {
+            title: "PostgreSQL como fonte de verdade",
+            description:
+              "Os estados dos processos financeiros permanecem persistidos no banco, enquanto Redis atua como infraestrutura auxiliar.",
+          },
+          {
+            title: "Atraso como estado derivado",
+            description:
+              "Uma conta é considerada vencida a partir do status pendente e da data de vencimento, evitando duplicação desnecessária de estado.",
+          },
+          {
+            title: "Idempotência e retries",
+            description:
+              "Jobs e registros persistentes ajudam a evitar reprocessamentos duplicados e permitem recuperação de falhas temporárias.",
+          },
+          {
+            title: "Docker como ambiente oficial",
+            description:
+              "Os serviços da aplicação são executados de forma reproduzível por Docker Compose.",
+          },
+        ],
+        learnings: [
+          "Construção de uma aplicação financeira full stack com frontend e backend desacoplados.",
+          "Uso de filas, Jobs, Scheduler e Redis em fluxos reais de processamento assíncrono.",
+          "Aplicação de idempotência, retries e reconciliação em processos financeiros.",
+          "Integração entre autenticação SPA, PostgreSQL, Redis, e-mail e infraestrutura Docker.",
+          "Criação de testes automatizados para fluxos críticos de negócio.",
+        ],
+        result: {
+          description:
+            "O resultado é uma aplicação financeira full stack funcional e testada, com autenticação, gestão de contatos, contas a pagar e receber, liquidação, indicadores, automações e processamento assíncrono em um ambiente Docker reproduzível.",
+          highlights: [
+            "Frontend React integrado à API Laravel",
+            "Persistência relacional com PostgreSQL",
+            "Redis, filas e Scheduler para automações",
+            "Fechamentos com CSV e envio por e-mail",
+            "66 testes automatizados com 232 assertions",
+            "Ambiente Docker reproduzível",
+          ],
+        },
+      },
+      {
         slug: "portfolio-pessoal",
         title: "Portfólio Pessoal",
         subtitle: "Plataforma para apresentar trajetória, projetos e experiência",
@@ -208,7 +475,7 @@ export const ptBrContent = {
         shortDescription: "Portfólio responsivo e orientado a dados, criado para apresentar trajetória, tecnologia e projetos de forma profissional.",
         mainTechnologies: ["Next.js", "TypeScript", "Tailwind CSS", "Motion"],
         status: "in-development",
-        repositoryUrl: "https://github.com/brayanfv/portfolio",
+        repositoryUrl: "https://github.com/brayanfv/brayan-favarin-portfolio",
         image: "/images/og/portfolio-brayan-favarin.png",
         imageAlt: "Imagem de apresentação do portfólio pessoal de Brayan Favarin",
         year: "2026",

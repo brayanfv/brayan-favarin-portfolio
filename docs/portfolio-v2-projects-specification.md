@@ -1,7 +1,7 @@
 # Portfolio V2 — Especificação de Projetos
 
 **Status:** fonte canônica para a seção de Projetos e estudos de caso.
-**Atualizada em:** 2026-08-28.
+**Atualizada em:** 2026-10-07.
 **Origem:** consolida o antigo Blueprint e a Specification de Projetos V2.
 
 ## Objetivo
@@ -128,6 +128,31 @@ respectivamente.
 A arquitetura apresenta Next.js → Spring Boot → PostgreSQL e pode complementar
 o fluxo com JWT, Docker, CI/CD, testes e preparação para deploy, desde que esses
 itens sejam descritos com precisão e não sugiram um deploy público inexistente.
+
+## Finora
+
+É o segundo estudo de caso publicado e apresenta uma aplicação completa de
+gestão financeira.
+
+- **Nome oficial:** Finora.
+- **Resumo:** sistema full stack para gestão de contas a pagar e receber,
+  contatos, indicadores e fechamentos financeiros, com frontend React, API
+  Laravel, PostgreSQL, Redis e ambiente Docker reproduzível.
+- **Capturas oficiais:** dashboardFinora.png, transactionsFinora.png,
+  period-overviewFinora.png, contactsFinora.png e loginFinora.png.
+- **Links públicos:** repositório no GitHub; não há ação de deploy enquanto uma
+  URL pública real não estiver disponível.
+
+A ordem da galeria é Dashboard, Lançamentos, Visão do período, Contatos e Login.
+As legendas devem contextualizar indicadores e vencimentos, o fluxo de contas a
+pagar e receber, a consolidação por período, os vínculos com contatos e o acesso
+protegido à aplicação.
+
+A arquitetura apresenta React → Laravel → PostgreSQL e complementa o fluxo com
+Redis, Sanctum, filas, Scheduler, Mailpit e Docker. A stack técnica permanece
+organizada em Frontend, Backend, Banco, Infraestrutura e Qualidade, destacando
+processamento assíncrono, idempotência e testes sem alterar o foco tecnológico
+global do portfólio.
 
 ## Portfólio Pessoal
 
