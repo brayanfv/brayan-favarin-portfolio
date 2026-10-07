@@ -1,0 +1,37 @@
+.carousel {
+  --carousel-slide-width: calc(100vw - 2.5rem);
+
+  width: 100%;
+  max-width: 90rem;
+  margin-inline: auto;
+}
+
+.track {
+  padding-inline: calc(
+    (min(100vw, 90rem) - var(--carousel-slide-width)) / 2
+  );
+  scrollbar-width: none;
+}
+
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+.slide {
+  flex: 0 0 var(--carousel-slide-width);
+}
+
+@media (min-width: 40rem) {
+  .carousel {
+    --carousel-slide-width: min(36rem, calc(100vw - 8rem));
+  }
+}
+
+@media (min-width: 64rem) {
+  .carousel {
+    --carousel-slide-width: min(
+      42rem,
+      calc(min(100vw, 90rem) - 22rem)
+    );
+  }
+}
